@@ -16,8 +16,8 @@ class SizeCategoriesTableSeeder extends Seeder
     public function run()
     {
         //
-        SizeCategory::create(['name' => '10t']);
-        SizeCategory::create(['name' => '8t']);
-        SizeCategory::create(['name' => '4t']);
+        SizeCategory::create(['name' => 10]);
+        SizeCategory::create(['name' => 8]);
+        SizeCategory::create(['name' => 4]);
     }
 }
