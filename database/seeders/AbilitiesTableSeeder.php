@@ -16,11 +16,11 @@ class AbilitiesTableSeeder extends Seeder
     public function run()
     {
         //
-        Ability::create(['name' => 'hookroll']);
-        Ability::create(['name' => 'unic']);
-        Ability::create(['name' => 'hiab']);
-        Ability::create(['name' => 'flatbody']);
-        Ability::create(['name' => 'boxbody']);
-        Ability::create(['name' => 'wing']);
+        Ability::create(['name' => 'フックロール']);
+        Ability::create(['name' => 'ユニック']);
+        Ability::create(['name' => 'ヒアブ']);
+        Ability::create(['name' => '平ボディ']);
+        Ability::create(['name' => 'ハコ車']);
+        Ability::create(['name' => 'ウイング']);
     }
 }
