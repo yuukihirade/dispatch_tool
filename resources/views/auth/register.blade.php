@@ -24,6 +24,16 @@
                                 @enderror
                             </div>
                         </div>
+                        
+                        <div class="row mb-3">
+                            <label for="department_id" class="col-md-4 col-form-label text-md-end">{{ __('messages.department') }}</label>
+                            
+                            <select class="form-control" id="department_id" name="department_id">
+                                @foreach(App\Models\Department::all() as $department)
+                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('messages.email') }}</label>

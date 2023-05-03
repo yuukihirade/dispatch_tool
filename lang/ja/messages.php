@@ -10,4 +10,5 @@ return [
   'forgot_your_password?' => 'パスワードを忘れてしまった場合',
   'confirm_password' => 'パスワードの確認',
   'register' => 'ユーザー登録',
+  'department' => '部署',
 ];
