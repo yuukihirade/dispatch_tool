@@ -58,6 +58,11 @@
                             <td>{{ $car->registration_number }}</td>
                             <td>{{ $car->size_category()->get()->first()->name . 't車'}}</td>
                             <td>{{ $car->ability->name}}</td>
+                            <td>
+                                <div>
+                                    <a href="{{ route('dispatch.car.edit', ['car_id' => $car->id] )}}">編集</a>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
