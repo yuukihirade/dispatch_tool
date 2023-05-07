@@ -19,13 +19,23 @@ class Car extends Model
         'ability_id' => 'required',
     );
     
+    /*size_categories_tableを参照するメソッド
+    例：　$car->size_category->name
+    で下記のsize_category()というメソッドを使って
+    size_categories_tableを参照し、->nameで
+    そのテーブルにあるnameという値を取得できる
+    ※viewファイルで書くときはこの省略形の書き方が許されている
+    省略しないと
+    $car->size_category()->get()->first()->name;
     
-    public function size_categories()
+    */
+    public function size_category()
     {
         return $this->belongsTo('App\Models\SizeCategory');
     }
+    /*下記メソッドも上記メソッドと同じ要領*/
     
-    public function abilities()
+    public function ability()
     {
         return $this->belongsTo('App\Models\Ability');
     }
