@@ -13,6 +13,7 @@ class Location extends Model
     protected $guarded = array('id');
     
     public static $rules = array(
+        'customer_id' => 'required',
         'name' => 'required',
     );
     

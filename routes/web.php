@@ -32,7 +32,7 @@ Route::controller(CustomerController::class)->prefix('customer/')->name('custome
 use App\Http\Controllers\LocationController;
 Route::controller(LocationController::class)->prefix('customer/')->name('customer.')->middleware('auth')->group(function() {
     Route::get('location/add', 'add')->name('location.add');
-    Route::get('location/add', 'create')->name('location.create');
+    Route::post('location/add', 'create')->name('location.create');
 });
 
 Route::get('/', function () {
