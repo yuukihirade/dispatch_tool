@@ -31,8 +31,28 @@ class CustomerController extends Controller
         return redirect('customer/index');
     }
     
-    public function index()
+    public function index(Request $request)
     {
-        return view('customer.index');
+        if ($request->search != '検索')
+        {
+            // dd('if');
+            $customers = Customer::all();
+        } else {
+            if ($request->cond_name == '')
+            {
+                // dd($request);
+                $customers = Customer::all();
+            } else {
+                // dd($request);
+                // dd($request->cond_name);
+                //\DB::enableQueryLog();
+                $cond_param = '%' . addcslashes($request->cond_name, '%_\\') . '%';
+                // dd($cond_param);
+                $customers = Customer::where('name', 'like', $cond_param)->get();
+                //dd(\DB::getQueryLog());
+            }
+        }
+        
+        return view('customer.index', ['customers' => $customers]);
     }
 }
