@@ -36,7 +36,7 @@
                         <tr>
                           <th scope="row">{{ $customer->id }}</th>
                           <td>{{ $customer->name }}</td>
-                          <td><a href="{{ route('customer.detail', $customer->id) }}">詳細</a></td>
+                          <td><a href="{{ route('customer.detail', ['id' => $customer->id]) }}">詳細</a></td>
                         </tr>
                         @endforeach
                     </tbody>
