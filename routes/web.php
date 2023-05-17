@@ -27,6 +27,7 @@ Route::controller(CustomerController::class)->prefix('customer/')->name('custome
     Route::get('add', 'add')->name('add');
     Route::post('add', 'create')->name('create');
     Route::get('index', 'index')->name('index');
+    Route::get('detail', 'detail')->name('detail');
 });
 
 use App\Http\Controllers\LocationController;
