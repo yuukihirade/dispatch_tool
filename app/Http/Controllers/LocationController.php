@@ -8,6 +8,8 @@ use App\Models\Location;
 
 use App\Models\Customer;
 
+use App\Http\Controllers\CustomerController;
+
 class LocationController extends Controller
 {
     //
@@ -45,6 +47,11 @@ class LocationController extends Controller
         
         $location->fill($form)->save();
         
-        return redirect('customer/location/add');
+        return redirect()->action([CustomerController::class, 'index']);
+    }
+    
+    public function index(Request $request)
+    {
+        
     }
 }
