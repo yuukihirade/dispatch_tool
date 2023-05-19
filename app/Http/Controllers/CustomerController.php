@@ -38,11 +38,14 @@ class CustomerController extends Controller
             // dd('if');
             $customers = Customer::all();
         } else {
+            // 検索フォームが空で検索された場合
             if ($request->cond_name == '')
             {
                 // dd($request);
                 $customers = Customer::all();
-            } else {
+            } 
+            // 検索フォームに入力があった場合
+            else {
                 // dd($request);
                 // dd($request->cond_name);
                 //\DB::enableQueryLog();
@@ -54,5 +57,23 @@ class CustomerController extends Controller
         }
         
         return view('customer.index', ['customers' => $customers]);
+    }
+    
+    public function detail(Request $request)
+    {
+        $customer = Customer::find($request->id);
+        
+        if (empty($customer)){
+            abort(404);
+        }
+        
+        // dd($customer);
+        
+        $locations = Location::where('customer_id',  $customer->id)->get();
+        
+        // dd($locations);
+        
+        
+        return view('customer.detail', ['customer' => $customer, 'locations' => $locations]);
     }
 }
