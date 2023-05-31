@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Department;
+use App\Models\DispatchRequest;
 
 class User extends Authenticatable
 {
@@ -48,4 +49,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Department');   
     }
+    
+    public function dispatch_requests()
+    {
+        return $this->hasMany('App\Models\DispatchRequest');
+    }
+    
 }
