@@ -17,6 +17,11 @@ class DispatchRequest extends Model
     
     protected $guarded = array('id');
     
+    protected $dates = [
+        'start_datetime',
+        'end_datetime',
+    ];
+    
     public static $rules = array(
         'start_datetime' => 'required',
         'end_datetime' => 'required',

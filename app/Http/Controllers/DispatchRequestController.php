@@ -131,11 +131,11 @@ class DispatchRequestController extends Controller
                 elseif($request->cond_date != '' && $request->cond_customer == '')
                 {
                     $dispatch_requests = DispatchRequest::whereDate('start_datetime', $request->cond_date)->get();
-                    dd($dispatch_requests);
+                    // dd($dispatch_requests);
                 }
         }
         
-        return view('dispatch.request_index', ['dispatch_request' => $dispatch_requests]);
+        return view('dispatch.request_index', ['dispatch_requests' => $dispatch_requests]);
     }
     
     public function edit(Request $request)

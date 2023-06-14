@@ -30,6 +30,34 @@
                 </form>
             </div>
         </div>
-        
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                          <th scope="col">日時</th>
+                          <th scope="col">顧客名</th>
+                          <th scope="col">現場名</th>
+                          <th scope="col">希望車両</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($dispatch_requests as $r)
+                        <tr>
+                            <th scope="row">{{ $r->start_datetime->format('Y年m月d日') . $r->start_datetime->format('H:i') . ' ~ ' . $r->end_datetime->format('H:i') }}</th>
+                            <td>{{ $r->customer->name }}</td>
+                            <td>{{ $r->location->name }}</td>
+                            <td>{{ $r->size_category->name .'t' . $r->ability->name}}</td>
+                            <td>
+                                <div>
+                                    <a href="{{ route('dispatch.request.edit', ['dispatch_request_id' => $r->id] )}}">編集</a>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 @endsection
