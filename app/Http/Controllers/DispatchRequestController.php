@@ -94,6 +94,50 @@ class DispatchRequestController extends Controller
         }
     }
     
+    public function index(Request $request)
+    {
+        if ($request->search != '検索')
+        {
+            // dd('if');
+            $dispatch_requests = DispatchRequest::all();
+            // dd($dispatch_requests);
+        }   else {
+            // dd("else");
+                if($request->cond_date == '' && $request->cond_customer == '')
+                {
+                    $dispatch_requests = DispatchRequest::all();
+                    // dd($dispatch_requests);
+                }
+                elseif($request->cond_date != '' && $request->cond_customer != '')
+                {
+                    $keyword = $request->cond_customer;
+                    $cond_customers = '%' . addcslashes($keyword, '%_\\') . '%';
+                    $dispatch_requests = DispatchRequest::whereDate('start_datetime', $request->cond_date)->whereHas('customer', function($query) use ($cond_customers){
+                        $query->where('name', 'like', $cond_customers);
+                        })->get();
+                    
+                    // dd('両方');
+                }
+                elseif($request->cond_date == '' && $request->cond_customer != '')
+                {
+                    $keyword = $request->cond_customer;
+                    $cond_customers = '%' . addcslashes($keyword, '%_\\') . '%';
+                    $dispatch_requests = DispatchRequest::whereHas('customer', function($query) use ($cond_customers){
+                        // dd($query);
+                        $query->where('name','like', $cond_customers);
+                        })->get();
+                        // dd($dispatch_requests);
+                }
+                elseif($request->cond_date != '' && $request->cond_customer == '')
+                {
+                    $dispatch_requests = DispatchRequest::whereDate('start_datetime', $request->cond_date)->get();
+                    dd($dispatch_requests);
+                }
+        }
+        
+        return view('dispatch.request_index', ['dispatch_request' => $dispatch_requests]);
+    }
+    
     public function edit(Request $request)
     {
         return view('dispatch.request_edit');

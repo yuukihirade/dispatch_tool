@@ -40,6 +40,7 @@ use App\Http\Controllers\DispatchRequestController;
 Route::controller(DispatchRequestController::class)->prefix('dispatch/')->name('dispatch.')->middleware('auth')->group(function() {
     Route::get('request/add', 'add')->name('request.add');
     Route::post('request/add', 'create')->name('request.create');
+    Route::get('request/index', 'index')->name('request.index');
     Route::get('request/edit', 'edit')->name('request.edit');
 });
 
