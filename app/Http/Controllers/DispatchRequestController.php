@@ -16,39 +16,16 @@ class DispatchRequestController extends Controller
     //
     public function add(Request $request)
     {
-        // if ($request->search != '検索')
-        // {
-        //     $customers = Customer::all();
-        // } else{
-        //     if ($request->cond_customer == ''){
-        //         $customers = Customer::all();
-        //     } else{
-        //         $keyword = '%' . addcslashes($request->cond_customer, '%_\\') . '%';
-        //         $customers = Customer::where('name', 'like', $keyword)->get();
-        //     }
-        // }
         
-        // $customer_name = $request->customer_name;
         $customers = Customer::all();
         $locations = Location::all();
         $size_categories = SizeCategory::all();
         $abilities = Ability::all();
         $users = User::all();
-        // dd($locations);
-        // dd(Auth::user()->department_id);
-        foreach( $locations as $lk => $lv){
-            $view_locations[$lv['customer_id']][] = [
-                                                        'name' => $lv->name,
-                                                        'address' => $lv->address,
-                                                        'map_path' => $lv->map_path,
-                                                    ];
-                                                    // dd($lk. '+' . $lv);
-        }
-        // dd($view_locations);
+        
         
         return view('dispatch.request_add',['customers' => $customers,
                                             'locations' => $locations,
-                                            'view_locations' => $view_locations,
                                             'size_categories' => $size_categories,
                                             'abilities' => $abilities,
                                             'users' => $users,

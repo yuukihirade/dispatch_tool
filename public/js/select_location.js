@@ -1,4 +1,6 @@
 
+let selectCustomerId;
+
 
 function setCustomers(){
     
@@ -16,33 +18,52 @@ function setCustomers(){
     
     for(let ii = 0; ii < cateCustomers.length; ii++){
         let option = document.createElement('option');
-        option.value = cateCustomers[ii]['id'];
+        option.value = cateCustomers[ii]['name'];
         option.text = cateCustomers[ii]['name'];
+        // option.id = 'select' + cateCustomers[ii]['id'];
+        
         cateCustomersElement.appendChild(option);
+        
+        console.log(option);
     }
     
     
     
-}
-
-console.log(cateLocations);
-function setLocations(idx){
-    
-    cateLocationsElement.innerHTML = '';
-    
-    for (let i = 0; i < cateLocations.length; i++){
-        let option = document.createElement('option');
-        option.value = cateLocations[idx][i]['id'];
-        option.text =cateLocations[idx][i]['name'];
-        cateLocationsElement.appendChild(option);
-    }
 }
 
 setCustomers();
 
-cateCustomersElement.addEventListener('change', function() {
-    let idx = cateCustomers.selectedIndex;
+
+cateCustomersElement.addEventListener('change', function (){
+    // console.log(cateCustomersElement.selectedIndex + 1);
+    selectCustomerId = cateCustomersElement.selectedIndex + 1;
     
-    setLocations(idx);
+    setLocations();
 })
-// console.log(idx);
+
+
+
+
+function setLocations(){
+    
+    cateLocationsElement.innerHTML = '';
+    
+    let selectLocations = locations.filter((locations) => locations.customer_id == selectCustomerId);
+    for (let i = 0; i < selectLocations.length; i++){
+        let option = document.createElement('option');
+        option.value = selectLocations[i]['name'];
+        option.text = selectLocations[i]['name'];
+        
+        cateLocationsElement.appendChild(option);
+        
+        console.log(option);
+    }
+}
+
+
+
+// console.log(cateLocations);
+
+// let hoge = cateLocations.filter((location) => location.customer_id == 1);
+// console.log(hoge);
+

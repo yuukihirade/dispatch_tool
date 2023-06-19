@@ -19,15 +19,6 @@
         <div class="row">
             <div class="col">
                 <form action="{{ route('dispatch.request.create') }}" method="post" class="form-group" enctype="multipart/form-data">
-                    
-                        <!--<div class="row">-->
-                        <!--    <div class="col">-->
-                        <!--        <input type="text" id="cond_customer" name="cond_customer" size="15" placeholder="顧客名を絞り込む" >-->
-                        <!--    </div>-->
-                        <!--    <div class="col">-->
-                        <!--        <input type="submit" class="btn btn-outline-primary" name="search" value="検索">-->
-                        <!--    </div>-->
-                        <!--</div>-->
                     <div class="row">
                         <div class="col">
                             <label for="start_datetime">開始時間</label>
@@ -45,10 +36,7 @@
                             <div class="col">
                                 <label for="customer_id" class="form-label">顧客名</label>
                                 <select class="form-select" aria-label="Default select example" id="customer_id" name="customer_id">
-                                    <!--<option value="" selected>顧客名を選択してください</option>-->
-                                    <!--forea-->
-                                    <!--<option value="{ $customer->id }}" >{ $customer->name }}</option>-->
-                                    <!--endforeach-->
+                                    
                                 </select>
                             </div>
                         </div>
@@ -57,10 +45,7 @@
                         <div class="col">
                             <label for="location_id" class="form-label">現場名</label>
                             <select class="form-select" aria-label="Default select example" id="location_id" name="location_id">
-                                <!--<option value="" selected>現場名を選択してください</option>-->
-                                <!--foreach-->
-                                <!--<option value="{ $location->id }}" >{ $location->name }}</option>-->
-                                <!--endforeach-->
+                                
                             </select>
                         </div>
                     </div>
@@ -163,7 +148,7 @@
         let customers = @json($customers);
         let cateCustomers = [];
         let cateCustomersElement = document.getElementById('customer_id');
-        let cateLocations = @json($view_locations);
+        let locations = @json($locations);
         let cateLocationsElement = document.getElementById('location_id');
         
     </script>
