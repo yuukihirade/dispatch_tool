@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Customer;
+use App\Models\DispatchRequest;
 
 class Location extends Model
 {
@@ -21,4 +22,10 @@ class Location extends Model
     {
         return $this->belongsTo('App\Models\Customer');  
     }
+    
+    public function dispatch_requests()
+    {
+        return $this->hasMany('App\Models\DispatchRequest');
+    }
+    
 }

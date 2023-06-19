@@ -34,11 +34,21 @@ class DispatchRequestController extends Controller
         $size_categories = SizeCategory::all();
         $abilities = Ability::all();
         $users = User::all();
-        
+        // dd($locations);
         // dd(Auth::user()->department_id);
+        foreach( $locations as $lk => $lv){
+            $view_locations[$lv['customer_id']][] = [
+                                                        'name' => $lv->name,
+                                                        'address' => $lv->address,
+                                                        'map_path' => $lv->map_path,
+                                                    ];
+                                                    // dd($lk. '+' . $lv);
+        }
+        // dd($view_locations);
         
         return view('dispatch.request_add',['customers' => $customers,
                                             'locations' => $locations,
+                                            'view_locations' => $view_locations,
                                             'size_categories' => $size_categories,
                                             'abilities' => $abilities,
                                             'users' => $users,
@@ -75,6 +85,8 @@ class DispatchRequestController extends Controller
         
         $dispatch_request->car_id = null;
         // dd($form);
+        $dispatch_request->driver = null;
+        
         $dispatch_request->fill($form)->save();
         
         if($request->submit == '申請する')
@@ -85,7 +97,7 @@ class DispatchRequestController extends Controller
         {
             if($request->approval_status == true)
             {
-                return redirect('dispatch/request/edit');
+                return redirect()->route('dispatch.request.edit', ['dispatch_request_id' => $dispatch_request]);
             } 
             elseif($request->approval_status == false)
             {
@@ -140,6 +152,28 @@ class DispatchRequestController extends Controller
     
     public function edit(Request $request)
     {
-        return view('dispatch.request_edit');
+        $dispatch_request = DispatchRequest::find($request->dispatch_request_id);
+        // dd($car);
+        if (empty($dispatch_request)){
+            abort(404);
+        }
+        
+        $customers = Customer::all();
+        $locations = Location::all();
+        $size_categories = SizeCategory::all();
+        $abilities = Ability::all();
+        $users = User::all();
+        
+        return view('dispatch.request_edit', ['customers' => $customers,
+                                            'locations' => $locations,
+                                            'size_categories' => $size_categories,
+                                            'abilities' => $abilities,
+                                            'users' => $users,
+                                            ]);
+    }
+    
+    public function update(Request $request)
+    {
+        return redirect('/');
     }
 }

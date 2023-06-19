@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\SizeCategory;
 use App\Models\Ability;
+use App\Models\DispatchRequest;
 
 class Car extends Model
 {
@@ -38,5 +39,10 @@ class Car extends Model
     public function ability()
     {
         return $this->belongsTo('App\Models\Ability');
+    }
+    
+    public function dispatch_requests()
+    {
+        return $this->hasMany('App\Models\DispatchRequest');
     }
 }

@@ -42,6 +42,7 @@ Route::controller(DispatchRequestController::class)->prefix('dispatch/')->name('
     Route::post('request/add', 'create')->name('request.create');
     Route::get('request/index', 'index')->name('request.index');
     Route::get('request/edit', 'edit')->name('request.edit');
+    Route::post('request/edit', 'update')->name('request.update');
 });
 
 Route::get('/', function () {
@@ -50,6 +51,9 @@ Route::get('/', function () {
 
 
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

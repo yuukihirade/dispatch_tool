@@ -45,10 +45,10 @@
                             <div class="col">
                                 <label for="customer_id" class="form-label">顧客名</label>
                                 <select class="form-select" aria-label="Default select example" id="customer_id" name="customer_id">
-                                    <option value="" selected>顧客名を選択してください</option>
-                                    @foreach($customers as $customer)
-                                    <option value="{{ $customer->id }}" >{{ $customer->name }}</option>
-                                    @endforeach
+                                    <!--<option value="" selected>顧客名を選択してください</option>-->
+                                    <!--forea-->
+                                    <!--<option value="{ $customer->id }}" >{ $customer->name }}</option>-->
+                                    <!--endforeach-->
                                 </select>
                             </div>
                         </div>
@@ -57,10 +57,10 @@
                         <div class="col">
                             <label for="location_id" class="form-label">現場名</label>
                             <select class="form-select" aria-label="Default select example" id="location_id" name="location_id">
-                                <option value="" selected>現場名を選択してください</option>
-                                @foreach($locations as $location)
-                                <option value="{{ $location->id }}" >{{ $location->name }}</option>
-                                @endforeach
+                                <!--<option value="" selected>現場名を選択してください</option>-->
+                                <!--foreach-->
+                                <!--<option value="{ $location->id }}" >{ $location->name }}</option>-->
+                                <!--endforeach-->
                             </select>
                         </div>
                     </div>
@@ -158,4 +158,14 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    /*global customers*/
+        let customers = @json($customers);
+        let cateCustomers = [];
+        let cateCustomersElement = document.getElementById('customer_id');
+        let cateLocations = @json($view_locations);
+        let cateLocationsElement = document.getElementById('location_id');
+        
+    </script>
+    <script src="{{ asset('/js/select_location.js') }}"></script>
 @endsection
