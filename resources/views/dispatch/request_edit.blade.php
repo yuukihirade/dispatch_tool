@@ -45,10 +45,7 @@
                             <div class="col">
                                 <label for="customer_id" class="form-label">顧客名</label>
                                 <select class="form-select" aria-label="Default select example" id="customer_id" name="customer_id">
-                                    <option value="">顧客名を選択してください</option>
-                                    @foreach($customers as $customer)
-                                    <option value="{{ $customer->id }}" >{{ $customer->name }}</option>
-                                    @endforeach
+                                    
                                 </select>
                             </div>
                         </div>
@@ -57,10 +54,7 @@
                         <div class="col">
                             <label for="location_id" class="form-label">現場名</label>
                             <select class="form-select" aria-label="Default select example" id="location_id" name="location_id">
-                                <option value="" selected>現場名を選択してください</option>
-                                @foreach($locations as $location)
-                                <option value="{{ $location->id }}" >{{ $location->name }}</option>
-                                @endforeach
+                                
                             </select>
                         </div>
                     </div>
@@ -131,6 +125,28 @@
                     @if (Auth::user()->department_id == 1 or Auth::user()->department_id == 3)
                         <div class="row">
                             <div class="col">
+                                <h3>配車確定アクション</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="driver">運転手</label>
+                                <input type="text" name="driver" id="driver" value="{{ old('driver') }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="car_id" class="form-label">車両選択</label>
+                                <select class="form-select" aria-label="Default select example" id="car_id" name="car_id">
+                                    <option value='' selected>車両を選択してください</option>
+                                    @foreach ( $cars as $car)
+                                    <option value="{{ $car->id }}">{{ $car->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
                                 <fieldset>
                                     <legend>承認確認</legend>
                                     <div>
@@ -143,14 +159,14 @@
                         <div class="row">
                             <div class="col">
                                 @csrf
-                                <input type="submit" class="btn btn-outline-warning" name="accept" value="申請 & 承認">
+                                <input type="submit" class="btn btn-outline-warning" name="" value="配車確定">
                             </div>
                         </div>
                     @else
                         <div class="row">
                             <div class="col">
                                 @csrf
-                                <input type="submit" class="btn btn-outline-primary" name="submit" value="申請する">
+                                <input type="submit" class="btn btn-outline-primary" name="submit" value="変更する">
                             </div>
                         </div>
                     @endif
@@ -158,4 +174,14 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    /*global customers*/
+        let customers = @json($customers);
+        let cateCustomers = [];
+        let cateCustomersElement = document.getElementById('customer_id');
+        let locations = @json($locations);
+        let cateLocationsElement = document.getElementById('location_id');
+        
+    </script>
+    <script src="{{ asset('/js/select_location.js') }}"></script>
 @endsection

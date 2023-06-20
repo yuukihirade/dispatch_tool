@@ -9,13 +9,16 @@ use App\Models\SizeCategory;
 use App\Models\Ability;
 use App\Models\User;
 use App\Models\DispatchRequest;
+use App\Models\Car;
 // use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class DispatchRequestController extends Controller
 {
     //
     public function add(Request $request)
     {
+        abort_if(Auth::user()->department_id == 4, 403, '権限がありません。');
         
         $customers = Customer::all();
         $locations = Location::all();
@@ -57,7 +60,7 @@ class DispatchRequestController extends Controller
         unset($form['image']);
         unset($form['_token']);
         
-        $dispatch_request->approval_status = $request->has('approval_status');
+        $dispatch_request->approval_status = null;
         // dd($dispatch_request->approval_status);
         
         $dispatch_request->car_id = null;
@@ -74,14 +77,8 @@ class DispatchRequestController extends Controller
         }
         elseif($request->accept == "申請 & 承認")
         {
-            if($request->approval_status == true)
-            {
-                return redirect()->route('dispatch.request.edit', ['dispatch_request_id' => $dispatch_request]);
-            } 
-            elseif($request->approval_status == false)
-            {
-                return redirect('/home');
-            }
+            return redirect()->route('dispatch.request.edit', ['dispatch_request_id' => $dispatch_request]);
+            
         }
     }
     
@@ -131,6 +128,8 @@ class DispatchRequestController extends Controller
     
     public function edit(Request $request)
     {
+        abort_if(Auth::user()->department_id == 4, 403, '権限がありません。');
+        
         $dispatch_request = DispatchRequest::find($request->dispatch_request_id);
         // dd($car);
         if (empty($dispatch_request)){
@@ -142,17 +141,20 @@ class DispatchRequestController extends Controller
         $size_categories = SizeCategory::all();
         $abilities = Ability::all();
         $users = User::all();
+        $cars = Car::all();
         
         return view('dispatch.request_edit', ['customers' => $customers,
                                             'locations' => $locations,
                                             'size_categories' => $size_categories,
                                             'abilities' => $abilities,
                                             'users' => $users,
+                                            'cars' => $cars,
                                             ]);
     }
     
     public function update(Request $request)
     {
+        $request->has('approval_status');
         return redirect('/');
     }
 }
