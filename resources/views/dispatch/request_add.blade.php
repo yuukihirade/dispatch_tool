@@ -116,22 +116,11 @@
                     @if (Auth::user()->department_id == 1 or Auth::user()->department_id == 3)
                         <div class="row">
                             <div class="col">
-                                <fieldset>
-                                    <legend>承認確認</legend>
-                                    <div>
-                                      <input type="checkbox" id="approval_status" name="approval_status" value="1">
-                                      <label for="approval_status">承認する</label>
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
                                 @csrf
                                 <input type="submit" class="btn btn-outline-warning" name="accept" value="申請 & 承認">
                             </div>
                         </div>
-                    @else
+                        @elseif (Auth::user()->department_id == 2)
                         <div class="row">
                             <div class="col">
                                 @csrf
