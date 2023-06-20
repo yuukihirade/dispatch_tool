@@ -64,10 +64,12 @@ class DispatchRequestController extends Controller
         // dd($form);
         $dispatch_request->driver = null;
         
+        // dd($request);
         $dispatch_request->fill($form)->save();
         
         if($request->submit == '申請する')
         {
+            
             return redirect('/home');
         }
         elseif($request->accept == "申請 & 承認")

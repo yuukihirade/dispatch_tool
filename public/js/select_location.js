@@ -18,7 +18,7 @@ function setCustomers(){
     
     for(let ii = 0; ii < cateCustomers.length; ii++){
         let option = document.createElement('option');
-        option.value = cateCustomers[ii]['name'];
+        option.value = cateCustomers[ii]['id'];
         option.text = cateCustomers[ii]['name'];
         // option.id = 'select' + cateCustomers[ii]['id'];
         
@@ -51,7 +51,7 @@ function setLocations(){
     let selectLocations = locations.filter((locations) => locations.customer_id == selectCustomerId);
     for (let i = 0; i < selectLocations.length; i++){
         let option = document.createElement('option');
-        option.value = selectLocations[i]['name'];
+        option.value = selectLocations[i]['id'];
         option.text = selectLocations[i]['name'];
         
         cateLocationsElement.appendChild(option);
