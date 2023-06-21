@@ -154,7 +154,16 @@ class DispatchRequestController extends Controller
     
     public function update(Request $request)
     {
-        $request->has('approval_status');
-        return redirect('/');
+        if(Auth::user()->department_id == 1 || Auth::user()->department_id == 3)
+        {
+            $this->validate($request, DispatchRequest::$rules2);
+
+        }
+        elseif(Auth::user()->department_id == 2){
+            $this->validate($request, DispatchRequest::$rules);
+            $request->has('approval_status');
+            return redirect('/');
+        }
+        
     }
 }

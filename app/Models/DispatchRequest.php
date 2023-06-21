@@ -33,6 +33,20 @@ class DispatchRequest extends Model
         'user_id' => 'required',
     );
     
+    public static $rules2 = array(
+                'start_datetime' => 'required',
+                'end_datetime' => 'required',
+                'customer_id' => 'required',
+                'location_id' => 'required',
+                'ability_id' => 'required',
+                'size_category_id' => 'required',
+                'method' => 'required',
+                'user_id' => 'required',
+                'driver' => 'required',
+                'car_id' => 'required',
+                'approval_status' => 'required',
+            );
+    
     public function customer()
     {
         return $this->belongsTo('App\Models\Customer');
