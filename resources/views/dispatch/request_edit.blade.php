@@ -114,7 +114,14 @@
                             <input id="image" type="file" name="image[]" multiple>
                             <!--画像に複数のfileを値に入れる可能性があるため、multipleにして、nameを配列にしている-->
                         </div>
-                    </div>
+                        <div class="form-text text-info">
+                                設定中: {{ $dispatch_request->image_path }}
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
+                            </label>
+                        </div>
                     <div class="row">
                         <div class="col">
                             <label for="description">説明詳細:</label>
@@ -140,7 +147,7 @@
                                 <select class="form-select" aria-label="Default select example" id="car_id" name="car_id">
                                     <option value='' selected>車両を選択してください</option>
                                     @foreach ( $cars as $car)
-                                    <option value="{{ $car->id }}">{{ $car->name }}</option>
+                                    <option value="{{ $car->id }}">{{ $car->registration_number }}</option>
                                     @endforeach
                                 </select>
                             </div>

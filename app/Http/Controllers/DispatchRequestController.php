@@ -157,7 +157,17 @@ class DispatchRequestController extends Controller
         if(Auth::user()->department_id == 1 || Auth::user()->department_id == 3)
         {
             $this->validate($request, DispatchRequest::$rules2);
-
+            $dispatch_request = DispatchRequest::find($request->id);
+            $form = $request->all();
+            if($request->remove == 'true'){
+                $form['image_path'] = null;
+            }
+            elseif($request->file('image')){
+                $path = $request->file('image')->store('public/image');
+                $form['image_path'] = basename($path);
+            }
+            
+            $dispatch_request->fill($form)->save();
         }
         elseif(Auth::user()->department_id == 2){
             $this->validate($request, DispatchRequest::$rules);
