@@ -43,6 +43,7 @@ Route::controller(DispatchRequestController::class)->prefix('dispatch/')->name('
     Route::get('request/index', 'index')->name('request.index');
     Route::get('request/edit', 'edit')->name('request.edit');
     Route::post('request/edit', 'update')->name('request.update');
+    Route::get('request/detail', 'detail')->name('request.detail');
 });
 
 Route::get('/', function () {

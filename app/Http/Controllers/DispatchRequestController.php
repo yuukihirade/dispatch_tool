@@ -143,12 +143,14 @@ class DispatchRequestController extends Controller
         $users = User::all();
         $cars = Car::all();
         
+        
         return view('dispatch.request_edit', ['customers' => $customers,
                                             'locations' => $locations,
                                             'size_categories' => $size_categories,
                                             'abilities' => $abilities,
                                             'users' => $users,
                                             'cars' => $cars,
+                                            'dispatch_request' => $dispatch_request,
                                             ]);
     }
     
@@ -157,23 +159,47 @@ class DispatchRequestController extends Controller
         if(Auth::user()->department_id == 1 || Auth::user()->department_id == 3)
         {
             $this->validate($request, DispatchRequest::$rules2);
-            $dispatch_request = DispatchRequest::find($request->id);
-            $form = $request->all();
-            if($request->remove == 'true'){
-                $form['image_path'] = null;
-            }
-            elseif($request->file('image')){
-                $path = $request->file('image')->store('public/image');
-                $form['image_path'] = basename($path);
-            }
             
-            $dispatch_request->fill($form)->save();
         }
         elseif(Auth::user()->department_id == 2){
             $this->validate($request, DispatchRequest::$rules);
-            $request->has('approval_status');
-            return redirect('/');
+            // $request->has('approval_status');
+            // return redirect('/');
         }
         
+        $dispatch_request = DispatchRequest::find($request->id);
+        $form = $request->all();
+        if($request->remove == 'true'){
+            $form['image_path'] = null;
+        }
+        elseif($request->file('image')){
+            $image_paths = array();
+            foreach ($request->file('image') as $image){
+                $path = $image->store('public/image');
+                array_push($image_paths, basename($path));
+            }
+            $dispatch_request->image_path = implode(',', $image_paths);
+        }
+        
+        // dd($dispatch_request->image_path);
+        
+        unset($form['image']);
+        unset($form['remove']);
+        unset($form['_token']);
+        
+        // approval_status がtrueの$dispatch_requestとnullの$dispatch_requestは後々分けて表示するようにする。
+        
+        $dispatch_request->fill($form)->save();
+        
+        if($request->determine == '配車確定'){
+            return redirect()->route('home');
+        } elseif($request->update == '変更する'){
+            return redirect()->route('dispatch.request.detail');
+        }
+    }
+    
+    public function detail(Request $request)
+    {
+        return view('dispatch.request_detail');
     }
 }

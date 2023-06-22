@@ -165,15 +165,21 @@
                         </div>
                         <div class="row">
                             <div class="col">
+                                <input type="hidden" name="id" value="{{ $dispatch_request->id }}">
+                            </div>
+                            <div class="col">
                                 @csrf
-                                <input type="submit" class="btn btn-outline-warning" name="" value="配車確定">
+                                <input type="submit" class="btn btn-outline-warning" name="determine" value="配車確定">
                             </div>
                         </div>
                     @else
                         <div class="row">
                             <div class="col">
+                                <input type="hidden" name="id" value="{{ $dispatch_request->id }}">
+                            </div>
+                            <div class="col">
                                 @csrf
-                                <input type="submit" class="btn btn-outline-primary" name="submit" value="変更する">
+                                <input type="submit" class="btn btn-outline-primary" name="update" value="変更する">
                             </div>
                         </div>
                     @endif
