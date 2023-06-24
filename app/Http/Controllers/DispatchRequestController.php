@@ -200,6 +200,20 @@ class DispatchRequestController extends Controller
     
     public function detail(Request $request)
     {
-        return view('dispatch.request_detail');
+        $dispatch_request = DispatchRequest::find($request->id);
+        // dd($dispatch_request->id);
+        if(isset($dispatch_request->image_path))
+        {
+            // dd('if動いた');
+            $images = $dispatch_request->image_path;
+            $array_image = explode(',', $images);
+        }
+        else{
+            $array_image = null;
+        }
+        // dd($dispatch_request->image_path);
+        return view('dispatch.request_detail', ['dispatch_request' => $dispatch_request,
+                                                'array_image' => $array_image,
+                                                ]);
     }
 }

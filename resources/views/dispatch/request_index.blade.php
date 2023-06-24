@@ -50,7 +50,12 @@
                             <td>{{ $r->size_category->name .'t' . $r->ability->name}}</td>
                             <td>
                                 <div>
-                                    <a href="{{ route('dispatch.request.edit', ['dispatch_request_id' => $r->id] )}}">編集</a>
+                                    <a href="{{ route('dispatch.request.detail', ['id' => $r->id]) }}">詳細</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <button type="button" class="btn btn-warning"><a href="{{ route('dispatch.request.edit', ['dispatch_request_id' => $r->id] )}}">編集 or 承認</a></button>
                                 </div>
                             </td>
                         </tr>
