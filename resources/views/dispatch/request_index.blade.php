@@ -43,22 +43,24 @@
                     </thead>
                     <tbody>
                         @foreach($dispatch_requests as $r)
-                        <tr>
-                            <th scope="row">{{ $r->start_datetime->format('Y年m月d日') . $r->start_datetime->format('H:i') . ' ~ ' . $r->end_datetime->format('H:i') }}</th>
-                            <td>{{ $r->customer->name }}</td>
-                            <td>{{ $r->location->name }}</td>
-                            <td>{{ $r->size_category->name .'t' . $r->ability->name}}</td>
-                            <td>
-                                <div>
-                                    <a href="{{ route('dispatch.request.detail', ['id' => $r->id]) }}">詳細</a>
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    <button type="button" class="btn btn-warning"><a href="{{ route('dispatch.request.edit', ['dispatch_request_id' => $r->id] )}}">編集 or 承認</a></button>
-                                </div>
-                            </td>
-                        </tr>
+                            @if (is_null($r->approval_status))
+                                <tr>
+                                    <th scope="row">{{ $r->start_datetime->format('Y年m月d日') . $r->start_datetime->format('H:i') . ' ~ ' . $r->end_datetime->format('H:i') }}</th>
+                                    <td>{{ $r->customer->name }}</td>
+                                    <td>{{ $r->location->name }}</td>
+                                    <td>{{ $r->size_category->name .'t' . $r->ability->name}}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ route('dispatch.request.detail', ['id' => $r->id]) }}">詳細</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <button type="button" class="btn btn-warning"><a href="{{ route('dispatch.request.edit', ['dispatch_request_id' => $r->id] )}}">編集 or 承認</a></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
