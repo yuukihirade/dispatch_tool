@@ -44,6 +44,8 @@ Route::controller(DispatchRequestController::class)->prefix('dispatch/')->name('
     Route::get('request/edit', 'edit')->name('request.edit');
     Route::post('request/edit', 'update')->name('request.update');
     Route::get('request/detail', 'detail')->name('request.detail');
+    Route::get('request/date_accepted', 'dateAccepted')->name('request.date.accepted');
+    Route::get('request/detail_accepted', 'detailAccepted')->name('request.detail.accepted');
 });
 
 Route::get('/', function () {

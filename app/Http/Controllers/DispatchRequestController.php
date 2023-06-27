@@ -12,6 +12,7 @@ use App\Models\DispatchRequest;
 use App\Models\Car;
 // use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class DispatchRequestController extends Controller
 {
@@ -215,5 +216,21 @@ class DispatchRequestController extends Controller
         return view('dispatch.request_detail', ['dispatch_request' => $dispatch_request,
                                                 'array_image' => $array_image,
                                                 ]);
+    }
+    
+    public function dateAccepted(Request $request)
+    {
+        $dispatch_requests = DispatchRequest::all();
+        return view('dispatch.request_date_accepted', ['dispatch_requests' => $dispatch_requests]);
+    }
+    
+    public function detailAccepted(Request $request)
+    {
+        return view('dispatch.request_detail_accepted');
+    }
+    
+    public function Calendar(Request $request, $month)
+    {
+        
     }
 }
