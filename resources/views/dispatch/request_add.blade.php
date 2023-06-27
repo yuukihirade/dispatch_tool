@@ -135,7 +135,6 @@
     <script type="text/javascript">
     /*global customers*/
         let customers = @json($customers);
-        let cateCustomers = [];
         let cateCustomersElement = document.getElementById('customer_id');
         let locations = @json($locations);
         let cateLocationsElement = document.getElementById('location_id');

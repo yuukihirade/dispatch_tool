@@ -1,54 +1,28 @@
 
-let selectCustomerId;
-
 
 function setCustomers(){
     
     cateCustomersElement.innerHTML = '';
     
     for(let i = 0; i < customers.length; i++){
-        cateCustomers.push(customers[i]);
         
-    }
-    
-    
-    // let option0 = document.createElement('option');
-    // option0.text = ('顧客名を選択してください');
-    // cateCustomersElement.appendChild(option0);
-    
-    for(let ii = 0; ii < cateCustomers.length; ii++){
         let option = document.createElement('option');
-        option.value = cateCustomers[ii]['id'];
-        option.text = cateCustomers[ii]['name'];
-        // option.id = 'select' + cateCustomers[ii]['id'];
+        option.value = customers[i]['id'];
+        option.text = customers[i]['name'];
         
-        cateCustomersElement.appendChild(option);
+        cateCustomersElement.appendChild(option)
         
         console.log(option);
+        
     }
-    
-    
     
 }
 
-setCustomers();
-
-
-cateCustomersElement.addEventListener('change', function (){
-    // console.log(cateCustomersElement.selectedIndex + 1);
-    selectCustomerId = cateCustomersElement.selectedIndex + 1;
-    
-    setLocations();
-})
-
-
-
-
-function setLocations(){
+function setLocations(selectedCustomer){
     
     cateLocationsElement.innerHTML = '';
     
-    let selectLocations = locations.filter((locations) => locations.customer_id == selectCustomerId);
+    let selectLocations = locations.filter((locations) => locations.customer_id == selectedCustomer);
     for (let i = 0; i < selectLocations.length; i++){
         let option = document.createElement('option');
         option.value = selectLocations[i]['id'];
@@ -56,14 +30,15 @@ function setLocations(){
         
         cateLocationsElement.appendChild(option);
         
-        console.log(option);
+        // console.log(option);
     }
 }
 
+setCustomers();
 
-
-// console.log(cateLocations);
-
-// let hoge = cateLocations.filter((location) => location.customer_id == 1);
-// console.log(hoge);
+cateCustomersElement.addEventListener('change', function (){
+    var selectedCustomer = cateCustomersElement.value;
+    // console.log(selectedCustomer);
+    setLocations(selectedCustomer);
+})
 
