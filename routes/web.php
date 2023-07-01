@@ -48,8 +48,11 @@ Route::controller(DispatchRequestController::class)->prefix('dispatch/')->name('
     Route::get('request/detail_accepted', 'detailAccepted')->name('request.detail.accepted');
 });
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+use App\Http\Controllers\CalendarController;
+Route::controller(CalendarController::class)->middleware('auth')->group(function() {
+    Route::get('/', 'index')->name('calendar');
 });
 
 

@@ -1,2 +1,3 @@
 import './bootstrap';
-import './select_location.js';
+import './select_location';
+import './calendar';

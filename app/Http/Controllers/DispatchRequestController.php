@@ -74,7 +74,7 @@ class DispatchRequestController extends Controller
         if($request->submit == '申請する')
         {
             
-            return redirect('/home');
+            return redirect('/');
         }
         elseif($request->accept == "申請 & 承認")
         {
@@ -193,7 +193,7 @@ class DispatchRequestController extends Controller
         $dispatch_request->fill($form)->save();
         
         if($request->determine == '配車確定'){
-            return redirect()->route('home');
+            return redirect()->route('calendar');
         } elseif($request->update == '変更する'){
             return redirect()->route('dispatch.request.detail');
         }
