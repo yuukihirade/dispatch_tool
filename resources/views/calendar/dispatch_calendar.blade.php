@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.admin')
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FullCalendar</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.js"></script>
+
+</head>
+@section('title', '配車確定カレンダー')
+@section('content')
+ 
+<!-- カレンダーのコンテナ -->
+<div id="calendar"></div>
 <script>
  
 //本日、カレンダーの開始日、終了日と、曜日のテキストを用意します
@@ -21,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function() {
  
   //FullCalendarを生成します
   var calendar = new FullCalendar.Calendar(document.getElementById("calendar"), {
- 
+    
+    
     //プラグインを読み込みます
     plugins: ["dayGrid"],
  
@@ -50,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //イベント情報をJSONファイルから読み込みます
 		events: [
     {
-        "title": "旅行に行く",
+        "title": "カラオケに行く",
         "start": "2023-07-01",
         "className": ["event event-01"]
     },
@@ -75,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "end": "2019-12-20",
         "className": ["event event-05"]
     }
-],
+    ],
  
     //タイトルを書き換えます（2019年8月）
     titleFormat: function(obj) {
@@ -90,16 +96,21 @@ document.addEventListener("DOMContentLoaded", function() {
     //イベントのクリック時の処理を加えます
     eventClick: function(obj) {
       alert(obj.event.title);
-    }
+    },
+    
+    // 各日付セルが描画されるときの処理
+    navLinks: true,
+    navLinkDayClick: function(date, jsEvent) {
+      var localDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+      var formattedDate = localDate.toISOString().split('T')[0];
+      console.log('day', formattedDate);
+      console.log('coords', jsEvent.pageX, jsEvent.pageY);
+    } 
   });
   calendar.render();
 });
+
+// 日付をクリックしたときの処理
+
 </script>
-</head>
-<body>
- 
-<!-- カレンダーのコンテナ -->
-<div id="calendar"></div>
- 
-</body>
-</html>
+@endsection
