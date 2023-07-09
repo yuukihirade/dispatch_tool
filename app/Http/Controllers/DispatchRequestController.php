@@ -231,8 +231,4 @@ class DispatchRequestController extends Controller
                                                         ]);
     }
     
-    public function Calendar(Request $request, $month)
-    {
-        
-    }
 }
