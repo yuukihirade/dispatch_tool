@@ -205,7 +205,7 @@ class DispatchRequestController extends Controller
         // dd($dispatch_request->id);
         if(isset($dispatch_request->image_path))
         {
-            // dd('if動いた');
+            
             $images = $dispatch_request->image_path;
             $array_image = explode(',', $images);
         }
@@ -220,13 +220,15 @@ class DispatchRequestController extends Controller
     
     public function dateAccepted(Request $request)
     {
-        $dispatch_requests = DispatchRequest::all();
-        return view('dispatch.request_date_accepted', ['dispatch_requests' => $dispatch_requests]);
-    }
-    
-    public function detailAccepted(Request $request)
-    {
-        return view('dispatch.request_detail_accepted');
+        // dd($request);
+        $date = $request->date;
+        // dd($date);
+        
+        $dispatch_requests = DispatchRequest::whereDate('start_datetime', $date)->get();
+        
+        return view('dispatch.request_date_accepted', ['dispatch_requests' => $dispatch_requests,
+                                                        'date' => $date
+                                                        ]);
     }
     
     public function Calendar(Request $request, $month)
