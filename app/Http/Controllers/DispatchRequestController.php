@@ -231,4 +231,48 @@ class DispatchRequestController extends Controller
                                                         ]);
     }
     
+    public function detailAccepted(Request $request)
+    {
+        $dispatch_request = DispatchRequest::find($request->id);
+        // dd($dispatch_request->id);
+        if(isset($dispatch_request->image_path))
+        {
+            
+            $images = $dispatch_request->image_path;
+            $array_image = explode(',', $images);
+        }
+        else{
+            $array_image = null;
+        }
+        // dd($dispatch_request->image_path);
+        return view('dispatch.request_detail_accepted', ['dispatch_request' => $dispatch_request,
+                                                'array_image' => $array_image,
+                                                ]);
+    }
+    
+    public function returnRequest(Request $request)
+    {
+        // dd($request);
+        
+        $this->validate($request, DispatchRequest::$rules3);
+        
+        // dd($request);
+        
+        $dispatch_request = DispatchRequest::find($request->id);
+        
+        // dd($dispatch_request);
+        
+        $form = $request->all();
+        
+        unset($form['_token']);
+        
+        // dd($form);
+        
+        $dispatch_request->fill($form)->save();
+        
+        // dd($dispatch_request);
+        
+        
+        return redirect()->route('dispatch.request.index');
+    }
 }

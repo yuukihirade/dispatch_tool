@@ -47,6 +47,10 @@ class DispatchRequest extends Model
                 'approval_status' => 'required',
             );
     
+    public static $rules3 = array(
+                'approval_status' => 'required',
+            );
+    
     public function customer()
     {
         return $this->belongsTo('App\Models\Customer');

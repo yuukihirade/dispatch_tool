@@ -46,6 +46,7 @@ Route::controller(DispatchRequestController::class)->prefix('dispatch/')->name('
     Route::get('request/detail', 'detail')->name('request.detail');
     Route::get('request/date_accepted', 'dateAccepted')->name('request.date.accepted');
     Route::get('request/detail_accepted', 'detailAccepted')->name('request.detail.accepted');
+    Route::post('request/detail_accepted', 'returnRequest')->name('request.return');
 });
 
 

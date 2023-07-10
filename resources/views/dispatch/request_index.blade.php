@@ -43,7 +43,7 @@
                     </thead>
                     <tbody>
                         @foreach($dispatch_requests as $r)
-                            @if (is_null($r->approval_status))
+                            @if ($r->approval_status != 1)
                                 <tr>
                                     <th scope="row">{{ $r->start_datetime->format('Y年m月d日') . $r->start_datetime->format('H:i') . ' ~ ' . $r->end_datetime->format('H:i') }}</th>
                                     <td>{{ $r->customer->name }}</td>
