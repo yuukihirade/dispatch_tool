@@ -24,10 +24,11 @@ class CalendarController extends Controller
         foreach($dispatch_requests as $r){
             if ($r->approval_status == true){
                 $title = $r->customer->name . '(' . $r->location->name . ')';
-                $array = array('title' => $title, 'start' => $r->start_datetime);
+                $array = array('title' => $title, 'start' => $r->start_datetime, 'id' => $r->id);
                 array_push($js_dispatch, $array);
             }
         }
+        
         
         return view('calendar.dispatch_calendar', ['js_dispatch' => $js_dispatch]);
     }

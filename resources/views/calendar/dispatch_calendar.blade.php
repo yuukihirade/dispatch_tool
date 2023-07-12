@@ -75,7 +75,11 @@
    
       //イベントのクリック時の処理を加えます
       eventClick: function(obj) {
-        alert(obj.event.title);
+        //alert(obj.event.title);
+        var eventUrl = "/dispatch/request/detail_accepted?id=" + obj.event.id;
+        
+        //console.log(obj.event.id);
+        window.location.href = eventUrl;
       },
       
       // 各日付セルが描画されるときの処理
