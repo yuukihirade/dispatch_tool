@@ -34,6 +34,7 @@ use App\Http\Controllers\LocationController;
 Route::controller(LocationController::class)->prefix('customer/')->name('customer.')->middleware('auth')->group(function() {
     Route::get('location/add', 'add')->name('location.add');
     Route::post('location/add', 'create')->name('location.create');
+    Route::get('location/edit', 'edit')->name('location.edit');
 });
 
 use App\Http\Controllers\DispatchRequestController;

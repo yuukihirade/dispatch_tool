@@ -39,6 +39,7 @@
                                     <td><img src="{{ secure_asset('storage/map/' . $location->map_path) }}"></td>
                                 @endif
                                 <td><iframe src="https://maps.google.co.jp/maps?output=embed&q={{$location->address}}&z=16" width="600" height="400" frameborder="0" scrolling="no" ></iframe></td>
+                                <td><a href="{{ route('customer.location.edit', ['id' => $location->id]) }}">編集</a> </td>
                             </tr>
                         @endforeach
                     </tbody>

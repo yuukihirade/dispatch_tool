@@ -54,4 +54,16 @@ class LocationController extends Controller
     {
         
     }
+    
+    public function edit(Request $request)
+    {
+        $location = Location::find($request->id);
+        
+        if (empty($location)){
+            abort(404);
+        }
+        
+        
+        return view('customer.location.edit', ['location' => $location]);
+    }
 }
