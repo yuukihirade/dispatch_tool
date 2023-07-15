@@ -10,6 +10,9 @@ use App\Models\Customer;
 
 use App\Http\Controllers\CustomerController;
 
+use Illuminate\Support\Facades\Auth;
+
+
 class LocationController extends Controller
 {
     //
@@ -57,13 +60,59 @@ class LocationController extends Controller
     
     public function edit(Request $request)
     {
+        abort_if(Auth::user()->department_id == 4, 403, '権限がありません。');
+        
         $location = Location::find($request->id);
+        $customers = Customer::all();
         
         if (empty($location)){
             abort(404);
         }
         
         
-        return view('customer.location.edit', ['location' => $location]);
+        return view('customer.location.edit', ['location' => $location,
+                                               'customers' => $customers,
+                                                ]);
+    }
+    
+    public function update(Request $request)
+    {
+        
+        $this->validate($request, Location::$rules);
+        
+        // dd($request);
+        
+        $location = Location::find($request->id);
+        
+        // dd($location);
+        
+        $form = $request->all();
+        
+        // dd($form);
+        
+        if($request->remove == 'true'){
+            $form['map_path'] = null;
+        }
+        elseif($request->file('map')){
+            $map_paths = array();
+            foreach ($request->file('map') as $map){
+                $path = $map->store('public/map');
+                array_push($map_paths, basename($path));
+            }
+            array_push($map_paths, $location->map_path);
+            // dd($map_paths);
+            $location->map_path = implode(',', $map_paths);
+        }
+        
+        // dd($location->map_path);
+        
+        unset($form['map']);
+        unset($form['remove']);
+        unset($form['_token']);
+        
+        // dd($form);
+        
+        $location->fill($form)->save();
+        return redirect('customer/index');
     }
 }

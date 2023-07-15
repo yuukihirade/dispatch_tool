@@ -35,6 +35,7 @@ Route::controller(LocationController::class)->prefix('customer/')->name('custome
     Route::get('location/add', 'add')->name('location.add');
     Route::post('location/add', 'create')->name('location.create');
     Route::get('location/edit', 'edit')->name('location.edit');
+    Route::post('location/edit', 'update')->name('location.update');
 });
 
 use App\Http\Controllers\DispatchRequestController;

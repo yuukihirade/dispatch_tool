@@ -8,6 +8,9 @@ use App\Models\Customer;
 
 use App\Models\Location;
 
+use Illuminate\Support\Facades\Auth;
+
+
 class CustomerController extends Controller
 {
     //
@@ -76,4 +79,6 @@ class CustomerController extends Controller
         
         return view('customer.detail', ['customer' => $customer, 'locations' => $locations]);
     }
+    
+    
 }
