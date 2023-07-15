@@ -72,7 +72,7 @@ class CustomerController extends Controller
         $locations = Location::where('customer_id',  $customer->id)->get();
         
         // dd($locations);
-        
+        // $map_array = createMapPathsArray();
         
         return view('customer.detail', ['customer' => $customer, 'locations' => $locations]);
     }

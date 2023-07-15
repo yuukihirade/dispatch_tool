@@ -22,6 +22,7 @@
                             <th scope="col">現場名</th>
                             <th scope="col">住所</th>
                             <th scope="col">地図</th>
+                            <th scope="col">Google Map</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,15 +30,15 @@
                             <tr>
                                 <th scope="row">{{ $location->name }}</th>
                                 <td>{{ $location->address }}</td>
-                                @if (false !== strpos($location->map_path, ','))
-                                    <!--Bladeでは配列を直接,波カッコで表示できないのでphpコードとして記述-->
+                                @if ($location->hasMultipleMapImages())
                                     <?php $map_array = explode(',', $location->map_path); ?>
                                     @foreach ($map_array as $map)
-                                <td><img src="{{ secure_asset('storage/map/' . $map) }}"></td>
+                                        <td><img src="{{ secure_asset('storage/map/' . $map) }}"></td>
                                     @endforeach
-                                    @elseif (isset($location->map_path) and false === strpos($location->map_path, ','))
+                                @elseif (isset($location->map_path) and false === strpos($location->map_path, ','))
                                     <td><img src="{{ secure_asset('storage/map/' . $location->map_path) }}"></td>
                                 @endif
+                                <td><iframe src="https://maps.google.co.jp/maps?output=embed&q={{$location->address}}&z=16" width="600" height="400" frameborder="0" scrolling="no" ></iframe></td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -28,4 +28,14 @@ class Location extends Model
         return $this->hasMany('App\Models\DispatchRequest');
     }
     
+    public function hasMultipleMapImages()
+    {
+        return strpos($this->map_path, ",") !== false; //map_path文字列が,から始まる場合strposは0(falsy)を返すので、!==falseとしている
+    }
+    
+    public function createMapPathsArray()
+    {
+        return  explode(',', $location->map_path);
+    }
+    
 }
