@@ -61,8 +61,10 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <input type="hidden" name="id" value="{{ $location->id }}"
+                            <input type="hidden" name="id" value="{{ $location->id }}">
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col">
                             @csrf
                             <input type="submit" class="btn btn-outline-primary" value="編集する">
@@ -71,5 +73,15 @@
                 </form>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <form method="get" action="{{ route('customer.location.delete') }}" onSubmit="return check()">
+                    <input type="hidden" name="id" value="{{ $location->id }}">
+                    <input type="submit" class="btn btn-danger" id="deleteButton" name="deleteButton" value="この現場を削除する">
+                </form>
+            </div>
+        </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="/js/deleteButton.js"></script>
 @endsection

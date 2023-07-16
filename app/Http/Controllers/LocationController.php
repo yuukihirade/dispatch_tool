@@ -115,4 +115,15 @@ class LocationController extends Controller
         $location->fill($form)->save();
         return redirect('customer/index');
     }
+    
+    public function delete(Request $request)
+    {
+        abort_if(Auth::user()->department_id == 4, 403, '権限がありません。');
+        // dd($request->id);
+        $location = Location::find($request->id);
+        // dd($location);
+        $location->delete();
+        
+        return redirect('customer/index');
+    }
 }
