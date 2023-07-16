@@ -18,6 +18,7 @@ class LocationController extends Controller
     //
     public function add()
     {
+        abort_if(Auth::user()->department_id == 4, 403, '権限がありません。');
         // dd('add動いた');
         $customers = Customer::all();
         return view('customer.location.create', ['customers' => $customers]);

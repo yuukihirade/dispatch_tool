@@ -16,6 +16,7 @@ class CustomerController extends Controller
     //
     public function add()
     {
+        abort_if(Auth::user()->department_id == 4, 403, '権限がありません。');
         return view('customer.create');
     }
     

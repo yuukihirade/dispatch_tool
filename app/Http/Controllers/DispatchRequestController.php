@@ -246,8 +246,8 @@ class DispatchRequestController extends Controller
         }
         // dd($dispatch_request->image_path);
         return view('dispatch.request_detail_accepted', ['dispatch_request' => $dispatch_request,
-                                                'array_image' => $array_image,
-                                                ]);
+                                                         'array_image' => $array_image,
+                                                        ]);
     }
     
     public function returnRequest(Request $request)
