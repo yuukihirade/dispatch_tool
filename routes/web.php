@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Auth::routes();
+
 use App\Http\Controllers\CarController;
 Route::controller(CarController::class)->prefix('dispatch/')->name('dispatch.')->middleware('auth')->group(function() {
     Route::get('car/add', 'add')->middleware(['admin','dispatch'])->name('car.add');
@@ -59,9 +62,16 @@ Route::controller(CalendarController::class)->middleware('auth')->group(function
     Route::get('/', 'index')->name('calendar');
 });
 
+use App\Http\Controllers\UserController;
+Route::controller(UserController::class)->prefix('admin/user')->name('admin.user.')->middleware('auth')->group(function() {
+    Route::get('/index', 'index')->middleware(['admin'])->name('index');
+    Route::get('/edit', 'edit')->middleware(['admin'])->name('edit');
+    Route::post('/edit', 'update')->middleware(['admin'])->name('update');
+    Route::get('/delete', 'delete')->middleware(['admin'])->name('delete');
+});
 
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
