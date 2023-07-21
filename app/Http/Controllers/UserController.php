@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\RegisterController;
 
 class UserController extends Controller
 {
@@ -37,12 +41,37 @@ class UserController extends Controller
     
     public function edit(Request $request)
     {
-        return view('admin.user.edit');
+        
+        $user = User::find($request->id);
+        
+        if (empty($user)){
+            abort(404);
+        }
+        
+        return view('admin.user.edit', ['user' => $user]);
     }
     
     public function update(Request $request)
     {
-        return redirect('admin.user.edit');
+        // dd($request);
+        $this->validate($request, User::$rules);
+        
+        $user = User::find($request->id);
+        
+        // dd($user);
+        
+        $form = $request->all();
+        
+        // dd($form);
+        
+        unset($form['_token']);
+        
+        $user->fill($form)->save();
+        
+        // dd($user);
+        
+        
+        return redirect('admin/user/index');
     }
     
     public function delete(Request $request)
