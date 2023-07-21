@@ -76,6 +76,10 @@ class UserController extends Controller
     
     public function delete(Request $request)
     {
-        return redirect('admin.user.index');
+        $user = User::find($request->id);
+        
+        $user->delete();
+        
+        return redirect('admin/user/index');
     }
 }

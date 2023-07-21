@@ -86,9 +86,15 @@
                 </div>
             </form>
         </div>
-        <div class="col">
-            <a href="{{ route('admin.user.delete', ['id' => $user->id])}}" class="class"="btn btn-danger">この車両を削除する</a>
+        <div class="row">
+            <div class="col">
+                <form method="get" action="{{ route('admin.user.delete') }}" onSubmit="return check()">
+                    <input type="hidden" name="id" value="{{ $user->id }}">
+                    <input type="submit" class="btn btn-danger" id="deleteButton" name="deleteButton" value="この現場を削除する">
+                </form>
+            </div>
         </div>
     </div>
 </div>
+<script src="/js/deleteButton.js"></script>
 @endsection
