@@ -21,7 +21,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('messages.name') }}</label>
 
                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" required autocomplete="name" autofocus>
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
                     
                     <select class="form-control" id="department_id" name="department_id">
                         @foreach(App\Models\Department::all() as $department)
-                            <option value="{{ $department->id }}">{{ $department->name }}</option>
+                            <option value="{{ old('department_id', $department->id) }}" @if( $department->id == old('department_id')) selected @endif>{{ $department->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -45,7 +45,7 @@
                     <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('messages.email') }}</label>
 
                     <div class="col-md-6">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" required autocomplete="email">
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
                     <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('messages.password') }}</label>
 
                     <div class="col-md-6">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  required autocomplete="new-password">
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -90,7 +90,7 @@
             <div class="col">
                 <form method="get" action="{{ route('admin.user.delete') }}" onSubmit="return check()">
                     <input type="hidden" name="id" value="{{ $user->id }}">
-                    <input type="submit" class="btn btn-danger" id="deleteButton" name="deleteButton" value="この現場を削除する">
+                    <input type="submit" class="btn btn-danger" id="deleteButton" name="deleteButton" value="このユーザーを削除する">
                 </form>
             </div>
         </div>

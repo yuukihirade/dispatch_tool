@@ -24,6 +24,11 @@ class CarController extends Controller
     public function create(Request $request)
     {
         // dd($request);
+        
+        if($request->size_category_id == '' || $request->ability_id == '')
+        {
+            $car = null;
+        }
         $this->validate($request, Car::$rules);
         
         $car = new Car;
@@ -114,7 +119,7 @@ class CarController extends Controller
     
     public function delete(Request $request)
     {
-        $car = Car::find($request->car_id);
+        $car = Car::find($request->id);
         
         $car->delete();
         

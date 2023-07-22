@@ -22,7 +22,7 @@
                             <select class="form-select" aria-label="Default select example" id="customer_id" name="customer_id">
                                 <option value="" selected>顧客名を選択してください</option>
                                 @foreach($customers as $customer)
-                                <option value="{{ $customer->id }}" >{{ $customer->name }}</option>
+                                <option value="{{ $customer->id }}" @if( $customer->id == old('customer_id')) selected @endif >{{ $customer->name }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -27,7 +27,7 @@
                             <select class="form-select" aria-label="Default select example" id="customer_id" name="customer_id">
                                 <option value="" selected>顧客名を選択してください</option>
                                 @foreach($customers as $customer)
-                                <option value="{{ $customer->id }}" >{{ $customer->name }}</option>
+                                <option value="{{ old('customer_id',$customer->id) }}" @if( $customer->id == old('customer_id')) selected @endif >{{ $customer->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -35,13 +35,13 @@
                     <div class="row">
                         <div class="col">
                             <label for="name" class="form-label">現場名</label>
-                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
+                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $location->name) }}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label for="address" class="form-label">住所</label>
-                            <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}">
+                            <input id="address" type="text" class="form-control" name="address" value="{{ old('address', $location->address) }}">
                         </div>
                     </div>
                     <div class="row">

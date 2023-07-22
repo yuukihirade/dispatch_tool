@@ -22,21 +22,23 @@
                     <div class="form-group row">
                         <label for="registration_number" class="col">車両ナンバー</label>
                         <div class="col">
-                            <input type="text" id="registration_number" name="registration_number" value{{ old('registration_number') }}>
+                            <input type="text" id="registration_number" name="registration_number" value="{{ old('registration_number') }}">
                         </div>
                         <div class="col">
                             <label for="size_category_id">車両サイズ</label>
                             <select id="size_category_id" name="size_category_id">
+                                <option value="">車両サイズを選択してください</option>
                                 @foreach ($size_categories as $size_category)
-                                    <option value="{{ $size_category->id }}">{{ $size_category->name}}</option>
+                                    <option value="{{ $size_category->id }}" @if( $size_category->id == old('size_category_id')) selected @endif>{{ $size_category->name}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col">
                             <label for="ability_id">機能</label>
                             <select id="ability_id" name="ability_id">
+                                <option value="">機能を選択してください</option>
                                 @foreach ($abilities as $ability)
-                                    <option value="{{ $ability->id }}">{{ $ability->name }}</option>
+                                    <option value="{{ $ability->id }}" @if( $ability->id == old('ability_id')) selected @endif>{{ $ability->name }}</option>
                                 @endforeach
                             </select>
                         </div>
