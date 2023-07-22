@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'sales' => \App\Http\Middleware\CheckSales::class,
         'dispatch' => \App\Http\Middleware\CheckDispatch::class,
         'driver' => \App\Http\Middleware\CheckDriver::class,
+        'adminOrDispatch' => \App\Http\Middleware\OrCheckAdminDispatch::class,
     ];
 }

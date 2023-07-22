@@ -17,7 +17,7 @@ Auth::routes();
 
 use App\Http\Controllers\CarController;
 Route::controller(CarController::class)->prefix('dispatch/')->name('dispatch.')->middleware('auth')->group(function() {
-    Route::get('car/add', 'add')->middleware(['admin','dispatch'])->name('car.add');
+    Route::get('car/add', 'add')->middleware(['adminOrDispatch'])->name('car.add');
     Route::post('car/add', 'create')->name('car.create');
     Route::get('car/index', 'index')->name('car.index');
     Route::get('car/edit', 'edit')->name('car.edit');
