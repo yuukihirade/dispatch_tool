@@ -1,8 +1,16 @@
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <title>@yield('title')</title>
         <!-- CSS only -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+        
+        <!-- Scripts -->
+         {{-- Javascriptを読み込みます --}}
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.min.js"></script>
 
     </head>
     <body>
@@ -10,42 +18,39 @@
             {{---->ナヴィゲーションバー--}}
             <nav class="navbar navbar-expand-xl navbar-light bg-light">
               <div class="container">
-                <a class="navbar-brand" href="#">平商事</a>
+                <a class="navbar-brand" href="{{ route('calendar') }}">平商事</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarWithDropdown" aria-controls="navbarWithDropdown" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse show" id="navbarWithDropdown">
                   <ul class="navbar-nav">
                     <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Home</a>
+                      <a class="nav-link active" aria-current="page" href="{{ route('calendar') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Dispatch Application Form</a>
+                      <a class="nav-link" href="{{ route('dispatch.request.add') }}">Dispatch Application Form</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Dispatch Request List</a>
+                      <a class="nav-link" href="{{ route('dispatch.request.index') }}">Dispatch Request List</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">Driver Calendar</a>
                     </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Registration Forms for Only Administrator
+                        for Only Administrator
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Department for User</a></li>
-                        <li><a class="dropdown-item" href="#">User Registration Form</a></li>
-                        <li><a class="dropdown-item" href="#">Size Category for Car</a></li>
-                        <li><a class="dropdown-item" href="#">Item for Request Item</a></li>
+                        <li><a class="dropdown-item" href="{{ route('admin.user.index') }}">User Management</a></li>
                       </ul>
                     </li>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Registration Forms for User
+                      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        for User
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Customer Registration Form</a></li>
-                        <li><a class="dropdown-item" href="#">Pickup Location for Customer</a></li>
+                        <li><a class="dropdown-item" href="{{ route('customer.index') }}">Management for Customers</a></li>
+                        <li><a class="dropdown-item" href="{{ route('customer.location.add') }}">Customer's Location Registration Form</a></li>
                         <li><a class="dropdown-item" href="#">Car Registration Form</a></li>
                       </ul>
                     </li>
@@ -54,9 +59,8 @@
                         Management Consoles
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Management for Customers</a></li>
-                        <li><a class="dropdown-item" href="#">Management for Pickup Locations</a></li>
-                        <li><a class="dropdown-item" href="#">Management for Cars</a></li>
+                        <li><a class="dropdown-item" href="{{ route('customer.index') }}">Management for Customers</a></li>
+                        <li><a class="dropdown-item" href="{{ route('dispatch.car.index') }}">Management for Cars</a></li>
                       </ul>
                     </li>
                     

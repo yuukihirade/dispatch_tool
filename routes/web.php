@@ -76,4 +76,3 @@ Route::controller(UserController::class)->prefix('admin/user')->name('admin.user
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
