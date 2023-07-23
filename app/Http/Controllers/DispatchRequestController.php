@@ -161,11 +161,13 @@ class DispatchRequestController extends Controller
         {
             $this->validate($request, DispatchRequest::$rules2);
             
+            
         }
         elseif(Auth::user()->department_id == 2){
             $this->validate($request, DispatchRequest::$rules);
             // $request->has('approval_status');
             // return redirect('/');
+            // dd($request);
         }
         
         $dispatch_request = DispatchRequest::find($request->id);
@@ -195,7 +197,7 @@ class DispatchRequestController extends Controller
         if($request->determine == '配車確定'){
             return redirect()->route('calendar');
         } elseif($request->update == '変更する'){
-            return redirect()->route('dispatch.request.detail');
+            return redirect()->route('dispatch.request.detail', ['id' => $dispatch_request->id]);
         }
     }
     
