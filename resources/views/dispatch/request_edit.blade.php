@@ -31,13 +31,13 @@
                     <div class="row">
                         <div class="col">
                             <label for="start_datetime">開始時間</label>
-                            <input class="form-control" type="datetime-local" id="start_datetime" name="start_datetime" value="{{ old('start_datetime')}}">
+                            <input class="form-control" type="datetime-local" id="start_datetime" name="start_datetime" value="{{ old('start_datetime', $dispatch_request->start_datetime)}}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label for="end_datetime">終了時間</label>
-                            <input class="form-control" type="datetime-local" id="end_datetime" name="end_datetime" value="{{ old('end_datetime')}}">
+                            <input class="form-control" type="datetime-local" id="end_datetime" name="end_datetime" value="{{ old('end_datetime', $dispatch_request->end_datetime)}}">
                         </div>
                     </div>
                     <div class="row">
@@ -70,7 +70,7 @@
                                 <select class="form-select" aria-label="Default select example" id="size_category_id" name="size_category_id">
                                     <option value="" selected>車両サイズを選択してください</option>
                                     @foreach($size_categories as $size_category)
-                                    <option value="{{ $size_category->id }}" >{{ $size_category->name . 't車'}}</option>
+                                    <option value="{{ old('size_category_id',$dispatch_request->size_category_id) }}" @if( $size_category->id == old('size_category_id', $dispatch_request->size_category_id)) selected @endif>{{ $size_category->name . 't車'}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -79,7 +79,7 @@
                                 <select class="form-select" aria-label="Default select example" id="ability_id" name="ability_id">
                                     <option value="" selected>車両機能を選択してください</option>
                                     @foreach($abilities as $ability)
-                                    <option value="{{ $ability->id }}" >{{ $ability->name }}</option>
+                                    <option value="{{ old('ability_id', $dispatch_request->ability_id) }}" @if( $ability->id == old('ability_id', $dispatch_request->ability_id)) selected @endif>{{ $ability->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -88,13 +88,13 @@
                     <div class="row">
                         <div class="col">
                             <label for="item" class="form-control">持ち物</label>
-                            <input id="item" type="text" class="form-control" name="item" value="{{ old('item') }}">
+                            <input id="item" type="text" class="form-control" name="item" value="{{ old('item', $dispatch_request->item) }}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label for="method">引取方法:</label>
-                            <textarea id="method" name="method" rows="5" cols="50" value="{{ old('method') }}"></textarea>
+                            <textarea id="method" name="method" rows="5" cols="50">{{ old('method', $dispatch_request->method) }}</textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -103,7 +103,7 @@
                                 <select class="form-select" aria-label="Default select example" id="user_id" name="user_id">
                                     <option value="" selected>担当者を選択してください</option>
                                     @foreach($users as $user)
-                                    <option value="{{ $user->id }}" >{{ $user->name }}</option>
+                                    <option value="{{ old('user_id', $dispatch_request->user_id) }}" @if( $user->id == old('user_id', $dispatch_request->user_id)) selected @endif>{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -125,7 +125,7 @@
                     <div class="row">
                         <div class="col">
                             <label for="description">説明詳細:</label>
-                            <textarea id="description" name="description" rows="15" cols="70" value="{{ old('description') }}"></textarea>
+                            <textarea id="description" name="description" rows="15" cols="70">{{ old('description', $dispatch_request->description) }}</textarea>
                         </div>
                     </div>
                     <!--if文で or や and など使うときは、以下のように最初からフルセンテンスで書かなければ動作しない-->
@@ -147,7 +147,7 @@
                                 <select class="form-select" aria-label="Default select example" id="car_id" name="car_id">
                                     <option value='' selected>車両を選択してください</option>
                                     @foreach ( $cars as $car)
-                                    <option value="{{ $car->id }}">{{ $car->registration_number }}</option>
+                                    <option value="{{ old('car_id', $dispatch_request->car_id) }}" @if( $car->id == old('car_id', $dispatch_request->car_id)) selected @endif>{{ $car->registration_number }}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -36,7 +36,7 @@
                     
                     <select class="form-control" id="department_id" name="department_id">
                         @foreach(App\Models\Department::all() as $department)
-                            <option value="{{ old('department_id', $department->id) }}" @if( $department->id == old('department_id')) selected @endif>{{ $department->name }}</option>
+                            <option value="{{ old('department_id', $user->department_id) }}" @if( $department->id == old('department_id', $user->department_id)) selected @endif>{{ $department->name }}</option>
                         @endforeach
                     </select>
                 </div>

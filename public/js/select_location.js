@@ -41,4 +41,3 @@ cateCustomersElement.addEventListener('change', function (){
     // console.log(selectedCustomer);
     setLocations(selectedCustomer);
 })
-

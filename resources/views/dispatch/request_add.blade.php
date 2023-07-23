@@ -61,7 +61,7 @@
                                 <select class="form-select" aria-label="Default select example" id="size_category_id" name="size_category_id">
                                     <option value="" selected>車両サイズを選択してください</option>
                                     @foreach($size_categories as $size_category)
-                                    <option value="{{ $size_category->id }}" >{{ $size_category->name . 't車'}}</option>
+                                    <option value="{{ $size_category->id }}" @if( $size_category->id == old('size_category_id')) selected @endif>{{ $size_category->name . 't車'}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -70,7 +70,7 @@
                                 <select class="form-select" aria-label="Default select example" id="ability_id" name="ability_id">
                                     <option value="" selected>車両機能を選択してください</option>
                                     @foreach($abilities as $ability)
-                                    <option value="{{ $ability->id }}" >{{ $ability->name }}</option>
+                                    <option value="{{ $ability->id }}" @if( $ability->id == old('ability_id')) selected @endif>{{ $ability->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -85,7 +85,7 @@
                     <div class="row">
                         <div class="col">
                             <label for="method">引取方法:</label>
-                            <textarea id="method" name="method" rows="5" cols="50" value="{{ old('method') }}"></textarea>
+                            <textarea id="method" name="method" rows="5" cols="50">{{ old('method') }}</textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -94,7 +94,7 @@
                                 <select class="form-select" aria-label="Default select example" id="user_id" name="user_id">
                                     <option value="" selected>担当者を選択してください</option>
                                     @foreach($users as $user)
-                                    <option value="{{ $user->id }}" >{{ $user->name }}</option>
+                                    <option value="{{ $user->id }}" @if( $user->id == old('user_id')) selected @endif>{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -109,7 +109,7 @@
                     <div class="row">
                         <div class="col">
                             <label for="description">説明詳細:</label>
-                            <textarea id="description" name="description" rows="15" cols="70" value="{{ old('description') }}"></textarea>
+                            <textarea id="description" name="description" rows="15" cols="70" >{{ old('description') }}</textarea>
                         </div>
                     </div>
                     <!--if文で or や and など使うときは、以下のように最初からフルセンテンスで書かなければ動作しない-->
