@@ -158,7 +158,7 @@
                                     <legend>承認確認</legend>
                                     <div>
                                       <input type="checkbox" id="approval_status" name="approval_status" value="1">
-                                      <label for="approval_status">承認する</label>
+                                      <label for="approval_status">承認��る</label>
                                     </div>
                                 </fieldset>
                             </div>

@@ -10,7 +10,7 @@
         
         <!-- Scripts -->
          {{-- Javascriptを読み込みます --}}
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" defer></script>
 
     </head>
     <body>
@@ -51,7 +51,6 @@
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="{{ route('customer.index') }}">Management for Customers</a></li>
                         <li><a class="dropdown-item" href="{{ route('customer.location.add') }}">Customer's Location Registration Form</a></li>
-                        <li><a class="dropdown-item" href="#">Car Registration Form</a></li>
                       </ul>
                     </li>
                     <li class="nav-item dropdown">
