@@ -147,7 +147,7 @@
                                 <select class="form-select" aria-label="Default select example" id="car_id" name="car_id">
                                     <option value='' selected>車両を選択してください</option>
                                     @foreach ( $cars as $car)
-                                    <option value="{{ old('car_id', $dispatch_request->car_id) }}" @if( $car->id == old('car_id', $dispatch_request->car_id)) selected @endif>{{ $car->registration_number }}</option>
+                                    <option value="{{ old('car_id', $car->id) }}" @if( $car->id == old('car_id', $car->car_id)) selected @endif>{{ $car->registration_number }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -158,7 +158,7 @@
                                     <legend>承認確認</legend>
                                     <div>
                                       <input type="checkbox" id="approval_status" name="approval_status" value="1">
-                                      <label for="approval_status">承認��る</label>
+                                      <label for="approval_status">承認する<label>
                                     </div>
                                 </fieldset>
                             </div>

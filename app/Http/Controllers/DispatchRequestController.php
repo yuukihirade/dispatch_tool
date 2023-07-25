@@ -159,6 +159,7 @@ class DispatchRequestController extends Controller
     {
         if(Auth::user()->department_id == 1 || Auth::user()->department_id == 3)
         {
+            // dd($request);
             $this->validate($request, DispatchRequest::$rules2);
             
             
@@ -167,7 +168,7 @@ class DispatchRequestController extends Controller
             $this->validate($request, DispatchRequest::$rules);
             // $request->has('approval_status');
             // return redirect('/');
-            // dd($request);
+            // dd('else');
         }
         
         $dispatch_request = DispatchRequest::find($request->id);
@@ -185,10 +186,11 @@ class DispatchRequestController extends Controller
         }
         
         // dd($dispatch_request->image_path);
-        
+        // dd($form);
         unset($form['image']);
         unset($form['remove']);
         unset($form['_token']);
+        
         
         // approval_status がtrueの$dispatch_requestとnullの$dispatch_requestは後々分けて表示するようにする。
         
