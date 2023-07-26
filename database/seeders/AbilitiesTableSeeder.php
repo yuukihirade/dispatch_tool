@@ -15,7 +15,7 @@ class AbilitiesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // Ability::truncate();
         Ability::create(['name' => 'フックロール']);
         Ability::create(['name' => 'ユニック']);
         Ability::create(['name' => 'ヒアブ']);

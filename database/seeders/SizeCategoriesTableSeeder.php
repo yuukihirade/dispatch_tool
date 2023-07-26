@@ -15,7 +15,7 @@ class SizeCategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // SizeCategory::truncate();
         SizeCategory::create(['name' => 10]);
         SizeCategory::create(['name' => 8]);
         SizeCategory::create(['name' => 4]);
