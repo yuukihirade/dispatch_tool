@@ -27,7 +27,6 @@ class DispatchRequestController extends Controller
         $abilities = Ability::all();
         $users = User::all();
         
-        
         return view('dispatch.request_add',['customers' => $customers,
                                             'locations' => $locations,
                                             'size_categories' => $size_categories,

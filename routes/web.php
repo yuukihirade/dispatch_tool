@@ -70,5 +70,10 @@ Route::controller(UserController::class)->prefix('admin/user')->name('admin.user
     Route::get('/delete', 'delete')->middleware(['admin'])->name('delete');
 });
 
+use App\Http\Controllers\DriverDispatchController;
+Route::controller(DriverDispatchController::class)->middleware('auth')->group(function() {
+    Route::get('driver/dispatch', 'index')->name('driver.dispatch');
+});
+
 Auth::routes();
 
