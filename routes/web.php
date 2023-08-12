@@ -55,7 +55,11 @@ Route::controller(DispatchRequestController::class)->prefix('dispatch/')->name('
     Route::post('request/detail_accepted', 'returnRequest')->name('request.return');
 });
 
-
+use App\Http\Controllers\DriverController;
+Route::controller(DriverController::class)->prefix('driver')->name('driver.')->middleware('auth')->group(function() {
+    Route::get('/add', 'add')->name('add');
+    Route::post('/add', 'create')->name('create');
+});
 
 use App\Http\Controllers\CalendarController;
 Route::controller(CalendarController::class)->middleware('auth')->group(function() {

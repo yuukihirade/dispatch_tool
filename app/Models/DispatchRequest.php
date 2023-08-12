@@ -10,6 +10,7 @@ use App\Models\Ability;
 use App\Models\SizeCategory;
 use App\Models\Car;
 use App\Models\User;
+use App\Models\Driver;
 
 class DispatchRequest extends Model
 {
@@ -79,6 +80,11 @@ class DispatchRequest extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+    
+    public function driver()
+    {
+        return $this->belongsTo('App\Models\Driver');
     }
     
 }
