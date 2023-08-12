@@ -43,7 +43,7 @@ class DispatchRequest extends Model
                 'size_category_id' => 'required',
                 'method' => 'required',
                 'user_id' => 'required',
-                'driver' => 'required',
+                'driver_id' => 'required',
                 'car_id' => 'required',
                 'approval_status' => 'required',
             );

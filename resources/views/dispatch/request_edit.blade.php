@@ -137,8 +137,13 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="driver">運転手</label>
-                                <input type="text" name="driver" id="driver" value="{{ old('driver') }}">
+                                <label for="driver_id">運転手</label>
+                                <select class="form-select" aria-label="Default select example" id="driver_id" name="driver_id">
+                                    <option value='' selected>運転手を選択してください</option>
+                                    @foreach ( $drivers as $driver)
+                                    <option value="{{ old('driver_id', $driver->id) }}" @if( $driver->id == old('driver_id', $driver->driver_id)) selected @endif>{{ $driver->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="row">

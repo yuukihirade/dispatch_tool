@@ -60,7 +60,7 @@
                     </tr>
                     <tr>
                         <th scope="col">運転手</th>
-                        <td>{{ $dispatch_request->driver }}</td>
+                        <td>{{ $dispatch_request->driver->name }}</td>
                     </tr>
                     <tr>
                         <th scope="col">確定車両</th>

@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('image_path')->nullable();
             $table->text('description')->nullable();
             $table->boolean('approval_status')->nullable();
-            $table->text('driver')->nullable();
+            $table->foreignId('driver_id')->nullable();
             $table->timestamps();
         });
     }

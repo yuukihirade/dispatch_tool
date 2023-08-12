@@ -15,6 +15,7 @@
                           <th scope="col">日時</th>
                           <th scope="col">顧客名</th>
                           <th scope="col">現場名</th>
+                          <th scope="col">運転手</th>
                           <th scope="col">希望車両</th>
                         </tr>
                     </thead>
@@ -25,7 +26,7 @@
                                     <th scope="row">{{ $r->start_datetime->format('Y年m月d日') . $r->start_datetime->format('H:i') . ' ~ ' . $r->end_datetime->format('H:i') }}</th>
                                     <td>{{ $r->customer->name }}</td>
                                     <td>{{ $r->location->name }}</td>
-                                    <td>{{ $r->driver}}</td>
+                                    <td>{{ $r->driver->name}}</td>
                                     <td>{{ $r->car->registration_number}}</td>
                                     <td>
                                         <div>

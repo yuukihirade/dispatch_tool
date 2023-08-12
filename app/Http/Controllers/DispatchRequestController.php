@@ -10,6 +10,7 @@ use App\Models\Ability;
 use App\Models\User;
 use App\Models\DispatchRequest;
 use App\Models\Car;
+use App\Models\Driver;
 // use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -65,7 +66,7 @@ class DispatchRequestController extends Controller
         
         $dispatch_request->car_id = null;
         // dd($form);
-        $dispatch_request->driver = null;
+        $dispatch_request->driver_id = null;
         
         // dd($request);
         $dispatch_request->fill($form)->save();
@@ -142,6 +143,7 @@ class DispatchRequestController extends Controller
         $abilities = Ability::all();
         $users = User::all();
         $cars = Car::all();
+        $drivers = Driver::all();
         
         
         return view('dispatch.request_edit', ['customers' => $customers,
@@ -151,6 +153,7 @@ class DispatchRequestController extends Controller
                                             'users' => $users,
                                             'cars' => $cars,
                                             'dispatch_request' => $dispatch_request,
+                                            'drivers' => $drivers,
                                             ]);
     }
     
@@ -189,7 +192,6 @@ class DispatchRequestController extends Controller
         unset($form['image']);
         unset($form['remove']);
         unset($form['_token']);
-        
         
         // approval_status がtrueの$dispatch_requestとnullの$dispatch_requestは後々分けて表示するようにする。
         
