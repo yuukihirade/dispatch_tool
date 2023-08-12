@@ -60,6 +60,7 @@
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="{{ route('customer.index') }}">Management for Customers</a></li>
                         <li><a class="dropdown-item" href="{{ route('dispatch.car.index') }}">Management for Cars</a></li>
+                        <li><a class="dropdown-item" href="{{ route('driver.add') }}">Management for Drivers</a></li>
                       </ul>
                     </li>
                     
