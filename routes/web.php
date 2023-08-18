@@ -81,3 +81,7 @@ Route::controller(DriverDispatchController::class)->middleware('auth')->group(fu
 
 Auth::routes();
 
+Route::get('/react', function () {
+    return view('react_sample');
+});
+
