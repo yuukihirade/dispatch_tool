@@ -127,8 +127,8 @@
                   <p class="card-text">現場狭いです。気を付けて</p>
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-                <img src="assets/images/bs-images/img-2x1.png" class="card-img-bottom" alt="card-img-bottom">
-              </div>
+                <img src="#" class="card-img-bottom" alt="card-img-bottom">
+            </div>
         </div>
     </div>
 @endsection
