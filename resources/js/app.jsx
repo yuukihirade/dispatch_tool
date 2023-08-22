@@ -3,21 +3,30 @@ import './bootstrap';
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+const handleCellClick = (e) => {
+  console.log('hoge');
+}
+
+const DispatchCell = ({dispatchName}) => {
+  
+  return(
+  <td><button onClick={handleCellClick}>{dispatchName}</button></td>  
+  );
+}
+
 const DriverDispatch = ({driverName}) => {
-    
-    const [cell, setCell] = React.useState("hoge");
     
     return(
         <tr>
           <th scope="row">{driverName}</th>
-          <td>{cell}</td>
-          <td>{cell}</td>
-          <td>{cell}</td>
-          <td>{cell}</td>
-          <td>{cell}</td>
-          <td>{cell}</td>
-          <td>{cell}</td>
-          <td>{cell}</td>
+          <DispatchCell dispatchName="hoge" />
+          <DispatchCell dispatchName="hoge" />
+          <DispatchCell dispatchName="hoge" />
+          <DispatchCell dispatchName="hoge" />
+          <DispatchCell dispatchName="hoge" />
+          <DispatchCell dispatchName="hoge" />
+          <DispatchCell dispatchName="foo" />
+          <DispatchCell dispatchName="hoo" />
         </tr>
     );
 }
