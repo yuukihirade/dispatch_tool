@@ -9,6 +9,6 @@ class DriverDispatchController extends Controller
     //
     public function index()
     {
-        return view('driver.dispatch');
+        return view('driver.dispatch', ["hoge" => "Hello"]);
     }
 }

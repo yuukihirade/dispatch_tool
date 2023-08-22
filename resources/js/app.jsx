@@ -207,6 +207,7 @@ function App() {
 }
 
 const Template = () => {
+  console.log({ window });
   return(
     <div className="container">
   <div className="row">
