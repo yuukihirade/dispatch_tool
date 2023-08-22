@@ -206,5 +206,142 @@ function App() {
     );
 }
 
-const root = ReactDOM.createRoot(document.getElementById("app"));
-root.render(<App />);
+const Template = () => {
+  return(
+    <div className="container">
+  <div className="row">
+    <div className="col">
+      <h1>本日の配車</h1>
+    </div>
+  </div>
+  <div className="row">
+    <div className="table-responsive, col">
+      <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" colSpan={4}>
+              午前
+            </th>
+            <th scope="col" colSpan={4}>
+              午後
+            </th>
+          </tr>
+          <tr>
+            <th scope="col">運転手 / 配車順</th>
+            <th scope="col">1</th>
+            <th scope="col">2</th>
+            <th scope="col">3</th>
+            <th scope="col">4</th>
+            <th scope="col">5</th>
+            <th scope="col">6</th>
+            <th scope="col">7</th>
+            <th scope="col">8</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">ドライバー1</th>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+          </tr>
+          <tr>
+            <th scope="row">ドライバー2</th>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+          </tr>
+          <tr>
+            <th scope="row">ドライバー3</th>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div className="row">
+    {/* Cellをクリックしたときに表示される現場詳細 */}
+    <div className="card">
+      <div className="card-header">日時</div>
+      <div className="card-body">
+        <h5 className="card-title">日付</h5>
+        <p className="card-text">4月1日</p>
+      </div>
+      <div className="card-body">
+        <h5 className="card-title">時間帯</h5>
+        <p className="card-text">8:00 ~ 10:00</p>
+      </div>
+    </div>
+    <div className="card">
+      <div className="card-header">顧客情報</div>
+      <div className="card-body">
+        <h5 className="card-title">引取先 (現場名)</h5>
+        <p className="card-text">リンナイ (掛川)</p>
+        {/* 現場詳細画面へ遷移 */}
+        <a href="#" className="btn btn-primary">
+          現場地図
+        </a>
+      </div>
+    </div>
+    <div className="card">
+      <div className="card-header">車両</div>
+      <div className="card-body">
+        <h5 className="card-title">車種</h5>
+        <p className="card-text">4t ユニック</p>
+        <h5 className="card-title">車番</h5>
+        <p className="card-text">浜松 あ 343 ..25</p>
+      </div>
+    </div>
+    <div className="card">
+      <div className="card-body">
+        <h5 className="card-title">持ち物</h5>
+        <p className="card-text">ハコ x10</p>
+      </div>
+    </div>
+    <div className="card">
+      <div className="card-body">
+        <h5 className="card-title">引取方法</h5>
+        <p className="card-text">リフト</p>
+      </div>
+    </div>
+    <div className="card">
+      <div className="card-body">
+        <h5 className="card-title">担当者</h5>
+        <p className="card-text">石神</p>
+      </div>
+    </div>
+    <div className="card">
+      <div className="card-body">
+        <h5 className="card-title">詳細説明 (画像)</h5>
+        <p className="card-text">現場狭いです。気を付けて</p>
+        <p className="card-text">
+          <small className="text-muted">Last updated 3 mins ago</small>
+        </p>
+      </div>
+      <img src="#" className="card-img-bottom" alt="card-img-bottom" />
+    </div>
+  </div>
+</div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("react_app"));
+root.render(<Template />);
