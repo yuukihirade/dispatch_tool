@@ -1,7 +1,8 @@
 import './bootstrap';
 // import './calendar';
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
+
 
 const handleCellClick = (e) => {
   console.log('hoge');
@@ -207,7 +208,22 @@ function App() {
 }
 
 const Template = () => {
-  console.log({ window });
+  
+  const [driver, setDriver] = useState({ drivers : [] });
+  
+  useEffect(() => {
+    const url = '/api/drivers';
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        const driversArray = Object.values(data);
+        setDriver(driversArray.map(d => d.name));
+        console.log(driver);
+      })
+  }, []);
+  
+  
   return(
     <div className="container">
   <div className="row">
