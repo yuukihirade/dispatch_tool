@@ -209,17 +209,19 @@ function App() {
 
 const Template = () => {
   
-  const [driver, setDriver] = useState({ drivers : [] });
+  const [drivers, setDrivers] = useState( [] );
+  console.log({drivers});
   
   useEffect(() => {
     const url = '/api/drivers';
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
-        const driversArray = Object.values(data);
-        setDriver(driversArray.map(d => d.name));
-        console.log(driver);
+        console.log({data});
+        setDrivers(Object.values(data));
+        // console.log(driver);
+        // console.log(data[0][0]);
+        
       })
   }, []);
   
@@ -257,8 +259,9 @@ const Template = () => {
           </tr>
         </thead>
         <tbody>
+          {drivers.map(driver => (
           <tr>
-            <th scope="row">ドライバー1</th>
+            <th scope="row">{driver.name}</th>
             <td>Cell</td>
             <td>Cell</td>
             <td>Cell</td>
@@ -268,28 +271,7 @@ const Template = () => {
             <td>Cell</td>
             <td>Cell</td>
           </tr>
-          <tr>
-            <th scope="row">ドライバー2</th>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-          </tr>
-          <tr>
-            <th scope="row">ドライバー3</th>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-          </tr>
+          ))}
         </tbody>
       </table>
     </div>
