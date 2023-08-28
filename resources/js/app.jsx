@@ -221,6 +221,7 @@ const Template = () => {
         setDrivers(Object.values(data));
         // console.log(driver);
         // console.log(data[0][0]);
+        console.log(drivers);
         
       })
   }, []);
@@ -260,7 +261,7 @@ const Template = () => {
         </thead>
         <tbody>
           {drivers.map(driver => (
-          <tr>
+          <tr key={driver.id}>
             <th scope="row">{driver.name}</th>
             <td>Cell</td>
             <td>Cell</td>
