@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Driver;
+use App\Models\DispatchRequest;
+use Carbon\Carbon;
 
 class DriverDispatchController extends Controller
 {
@@ -17,7 +19,17 @@ class DriverDispatchController extends Controller
     {
         //
         $drivers = Driver::all()->sortByDesc('updated_at');
-        return $drivers;
+        $today = Carbon::today();
+        $dispatch_requests = DispatchRequest::with(['customer'])->whereDate('start_datetime', $today)->get();
+        $dispatch_request_by_drivers = [];
+        
+        foreach ($dispatch_requests as $dispatch_request) {
+            $dispatch_request_by_drivers[$dispatch_request->driver_id][] = $dispatch_request;
+        }
+        return [
+            'drivers' => $drivers,
+            'dispatch_requests' => $dispatch_request_by_drivers
+        ];
     }
 
     /**

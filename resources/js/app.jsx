@@ -210,7 +210,9 @@ function App() {
 const Template = () => {
   
   const [drivers, setDrivers] = useState( [] );
+  const [dispatchRequests, setDispatchRequests] = useState( [] );
   console.log({drivers});
+  console.log({dispatchRequests});
   
   useEffect(() => {
     const url = '/api/drivers';
@@ -218,10 +220,10 @@ const Template = () => {
       .then(response => response.json())
       .then(data => {
         console.log({data});
-        setDrivers(Object.values(data));
+        setDrivers(Object.values(data['drivers']));
+        setDispatchRequests(data['dispatch_requests']);
         // console.log(driver);
         // console.log(data[0][0]);
-        console.log(drivers);
         
       })
   }, []);
@@ -263,14 +265,12 @@ const Template = () => {
           {drivers.map(driver => (
           <tr key={driver.id}>
             <th scope="row">{driver.name}</th>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
+            {
+              (dispatchRequests[driver.id] || []).map(dispatch => (
+                  <td>{dispatch.customer.name}</td>
+                )
+              )
+            }
           </tr>
           ))}
         </tbody>
