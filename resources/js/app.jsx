@@ -267,7 +267,7 @@ const Template = () => {
             <th scope="row">{driver.name}</th>
             {
               (dispatchRequests[driver.id] || []).map(dispatch => (
-                  <td>{dispatch.customer.name}</td>
+                  <td>{dispatch.customer.name + ' (' + dispatch.location.name + ')'}</td>
                 )
               )
             }
