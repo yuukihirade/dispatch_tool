@@ -221,12 +221,39 @@ const Template = () => {
       .then(data => {
         console.log({data});
         setDrivers(Object.values(data['drivers']));
-        setDispatchRequests(data['dispatch_requests']);
+        setDispatchRequests(Object.values(data['dispatch_requests']));
+        
         // console.log(driver);
         // console.log(data[0][0]);
-        
-      })
+        })
   }, []);
+  
+  // console.log(dispatchRequests[3][0]);
+  
+  const [renderingDispatch, setRenderingDispatch] = useState( [] );
+  const [id, setId] = useState(undefined);
+  
+
+  const fetchDispatch = (hoge) => {
+  const url = '/api/dispatches/{hoge}';
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      console.log({data});
+      setRenderingDispatch(data);
+      console.log({renderingDispatch});
+    })
+    .catch(error => {
+      alert('データの取得に失敗しました', error);
+    });
+  }
+  
+  
+  const handleClick = (e) => {
+    const clickedId = e.target.id; //クリックされた要素のIDを取得
+    setId(clickedId);
+    fetchDispatch({id});
+  }
   
   
   return(
@@ -266,8 +293,8 @@ const Template = () => {
           <tr key={driver.id}>
             <th scope="row">{driver.name}</th>
             {
-              (dispatchRequests[driver.id] || []).map(dispatch => (
-                  <td>{dispatch.customer.name + ' (' + dispatch.location.name + ')'}</td>
+              dispatchRequests.map(dispatch => (
+                  dispatch.driver_id == driver.id && <td><button id={dispatch.id} onClick={ handleClick } key={dispatch.id}>{dispatch.customer.name + ' (' + dispatch.location.name + ')'}</button></td>
                 )
               )
             }
@@ -331,7 +358,7 @@ const Template = () => {
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">詳細説明 (画像)</h5>
-        <p className="card-text">現場狭いです。気を付けて</p>
+        <p className="card-text">現場狭��です。気を付けて</p>
         <p className="card-text">
           <small className="text-muted">Last updated 3 mins ago</small>
         </p>

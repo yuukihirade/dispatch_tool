@@ -24,7 +24,7 @@ class DriverDispatchController extends Controller
         $dispatch_request_by_drivers = [];
         
         foreach ($dispatch_requests as $dispatch_request) {
-            $dispatch_request_by_drivers[$dispatch_request->driver_id][] = $dispatch_request;
+            $dispatch_request_by_drivers[] = $dispatch_request;
         }
         
         return [
@@ -53,6 +53,9 @@ class DriverDispatchController extends Controller
     public function show($id)
     {
         //
+        $renderingDispatch = DispatchRequest::find($id);
+        dd($id);
+        return ['renderingDispatch' => $renderingDispatch];
     }
 
     /**
