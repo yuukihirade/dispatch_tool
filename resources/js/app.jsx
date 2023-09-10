@@ -2,7 +2,7 @@ import './bootstrap';
 // import './calendar';
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { format } from 'date-fns'
+import { format, getDate, getMonth, getYear } from 'date-fns'
 
 
 const handleCellClick = (e) => {
@@ -212,6 +212,7 @@ const Template = () => {
   
   const [drivers, setDrivers] = useState( [] );
   const [dispatchRequests, setDispatchRequests] = useState( [] );
+  const [jsToday, setJsToday] = useState('');
   console.log({drivers});
   console.log({dispatchRequests});
   
@@ -223,24 +224,20 @@ const Template = () => {
         console.log({data});
         setDrivers(Object.values(data['drivers']));
         setDispatchRequests(Object.values(data['dispatch_requests']));
-        
+        // setJsToday(data.today.toISOString());
+        setJsToday(data.today);
         // console.log(driver);
         // console.log(data[0][0]);
         })
   }, []);
   
+  console.log({jsToday});
   // console.log(dispatchRequests[3][0]);
   
   const [selectedDispatch, setSelectedDispatch] = useState(undefined);
   const [selectedId, setSelectedId] = useState(undefined);
   
-  const formatDate = (inputDate) => {
-    const date = new Date(inputDate);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    console.log(`${year}年${month}月${day}日`);
-  }
+  
 
   
   const handleClick = (e) => {
@@ -251,6 +248,7 @@ const Template = () => {
     setSelectedDispatch(dispatchRequests.find((request) => request.id == clickedId));
     console.log(selectedDispatch);
     // formatDate(selectedDispatch.start_datetime);
+    
   }
   
   
@@ -267,7 +265,7 @@ const Template = () => {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">{jsToday && format(new Date(jsToday), 'yyyy/MM/dd')}</th>
             <th scope="col" colSpan={4}>
               午前
             </th>
@@ -313,7 +311,7 @@ const Template = () => {
       </div>
       <div className="card-body">
         <h5 className="card-title">時間帯</h5>
-        <p className="card-text">{selectedDispatch && format(new Date(selectedDispatch.start_datetime), 'HH:mm')} ~ {selectedDispatch && format(new Date(selectedDispatch.end_datetime), 'HH:mm')}</p>
+        <p className="card-text">{selectedDispatch && format(new Date(selectedDispatch.start_datetime), 'HH:mm') + ' ~ '}  {selectedDispatch && format(new Date(selectedDispatch.end_datetime), 'HH:mm')}</p>
       </div>
     </div>
     <div className="card">
@@ -333,7 +331,7 @@ const Template = () => {
       <div className="card-header">車両</div>
       <div className="card-body">
         <h5 className="card-title">車種</h5>
-        <p className="card-text">{selectedDispatch && selectedDispatch.size_category.name}t{selectedDispatch && selectedDispatch.ability.name}</p>
+        <p className="card-text">{selectedDispatch && selectedDispatch.size_category.name + 't'}{selectedDispatch && selectedDispatch.ability.name}</p>
         <h5 className="card-title">車番</h5>
         <p className="card-text">{selectedDispatch && selectedDispatch.car.registration_number}</p>
       </div>
@@ -341,27 +339,27 @@ const Template = () => {
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">持ち物</h5>
-        <p className="card-text">ハコ x10</p>
+        <p className="card-text">{selectedDispatch && selectedDispatch.item}</p>
       </div>
     </div>
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">引取方法</h5>
-        <p className="card-text">リフト</p>
+        <p className="card-text">{selectedDispatch && selectedDispatch.method}</p>
       </div>
     </div>
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">担当者</h5>
-        <p className="card-text">石神</p>
+        <p className="card-text">{selectedDispatch && selectedDispatch.user.name}</p>
       </div>
     </div>
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">詳細説明 (画像)</h5>
-        <p className="card-text">現場狭��です。気を付けて</p>
+        <p className="card-text">{selectedDispatch && selectedDispatch.description}</p>
         <p className="card-text">
-          <small className="text-muted">Last updated 3 mins ago</small>
+          <small className="text-muted">{selectedDispatch && format(new Date(selectedDispatch.updated_at), 'yyyy/MM/dd  HH:mm') + '最終更新'}</small>
         </p>
       </div>
       <img src="#" className="card-img-bottom" alt="card-img-bottom" />

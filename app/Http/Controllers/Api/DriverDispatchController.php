@@ -20,7 +20,7 @@ class DriverDispatchController extends Controller
         //
         $drivers = Driver::all()->sortByDesc('updated_at');
         $today = Carbon::today();
-        $dispatch_requests = DispatchRequest::with(['customer', 'location', 'size_category', 'ability', 'car'])->whereDate('start_datetime', $today)->get();
+        $dispatch_requests = DispatchRequest::with(['customer', 'location', 'size_category', 'ability', 'car', 'user'])->whereDate('start_datetime', $today)->get();
         $dispatch_request_by_drivers = [];
         
         foreach ($dispatch_requests as $dispatch_request) {
@@ -29,7 +29,8 @@ class DriverDispatchController extends Controller
         
         return [
             'drivers' => $drivers,
-            'dispatch_requests' => $dispatch_request_by_drivers
+            'dispatch_requests' => $dispatch_request_by_drivers,
+            'today' => $today
         ];
     }
 
