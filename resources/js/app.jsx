@@ -333,9 +333,9 @@ const Template = () => {
       <div className="card-header">車両</div>
       <div className="card-body">
         <h5 className="card-title">車種</h5>
-        <p className="card-text">4t ユニック</p>
+        <p className="card-text">{selectedDispatch && selectedDispatch.size_category.name}t{selectedDispatch && selectedDispatch.ability.name}</p>
         <h5 className="card-title">車番</h5>
-        <p className="card-text">浜松 あ 343 ..25</p>
+        <p className="card-text">{selectedDispatch && selectedDispatch.car.registration_number}</p>
       </div>
     </div>
     <div className="card">
