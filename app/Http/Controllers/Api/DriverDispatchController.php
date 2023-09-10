@@ -53,9 +53,7 @@ class DriverDispatchController extends Controller
     public function show($id)
     {
         //
-        $renderingDispatch = DispatchRequest::find($id);
-        dd($id);
-        return ['renderingDispatch' => $renderingDispatch];
+        
     }
 
     /**

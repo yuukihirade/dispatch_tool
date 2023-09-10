@@ -2,6 +2,7 @@ import './bootstrap';
 // import './calendar';
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
+import { format } from 'date-fns'
 
 
 const handleCellClick = (e) => {
@@ -230,30 +231,28 @@ const Template = () => {
   
   // console.log(dispatchRequests[3][0]);
   
-  const [renderingDispatch, setRenderingDispatch] = useState( [] );
-  const [id, setId] = useState(undefined);
+  const [selectedDispatch, setSelectedDispatch] = useState(undefined);
+  const [selectedId, setSelectedId] = useState(undefined);
   
-
-  const fetchDispatch = (hoge) => {
-  const url = '/api/dispatches/{hoge}';
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      console.log({data});
-      setRenderingDispatch(data);
-      console.log({renderingDispatch});
-    })
-    .catch(error => {
-      alert('データの取得に失敗しました', error);
-    });
+  const formatDate = (inputDate) => {
+    const date = new Date(inputDate);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    console.log(`${year}年${month}月${day}日`);
   }
-  
+
   
   const handleClick = (e) => {
+    console.log(e.target.id);
     const clickedId = e.target.id; //クリックされた要素のIDを取得
-    setId(clickedId);
-    fetchDispatch({id});
+    setSelectedId(clickedId);
+    console.log(selectedId);
+    setSelectedDispatch(dispatchRequests.find((request) => request.id == clickedId));
+    console.log(selectedDispatch);
+    // formatDate(selectedDispatch.start_datetime);
   }
+  
   
   
   return(
@@ -310,18 +309,20 @@ const Template = () => {
       <div className="card-header">日時</div>
       <div className="card-body">
         <h5 className="card-title">日付</h5>
-        <p className="card-text">4月1日</p>
+        <p className="card-text">{selectedDispatch && format(new Date(selectedDispatch.start_datetime), 'yyyy/MM/dd')}</p>
       </div>
       <div className="card-body">
         <h5 className="card-title">時間帯</h5>
-        <p className="card-text">8:00 ~ 10:00</p>
+        <p className="card-text">{selectedDispatch && format(new Date(selectedDispatch.start_datetime), 'HH:mm')} ~ {selectedDispatch && format(new Date(selectedDispatch.end_datetime), 'HH:mm')}</p>
       </div>
     </div>
     <div className="card">
       <div className="card-header">顧客情報</div>
       <div className="card-body">
-        <h5 className="card-title">引取先 (現場名)</h5>
-        <p className="card-text">リンナイ (掛川)</p>
+        <h5 className="card-title">引取先 (現場)</h5>
+        <p className="card-text">{selectedDispatch && selectedDispatch.customer.name} ({selectedDispatch && selectedDispatch.location.name})</p>
+        {/*
+        */}
         {/* 現場詳細画面へ遷移 */}
         <a href="#" className="btn btn-primary">
           現場地図

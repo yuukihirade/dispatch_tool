@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 use App\Http\Controllers\Api\DriverDispatchController as ApiDriverDispatchController;
 Route::controller(ApiDriverDispatchController::class)->middleware('api')->group(function() {
-   Route::get('drivers', 'index'); 
+   Route::get('drivers', 'index');
+   Route::get('dispatches/{selectedId}', 'show');
 });
