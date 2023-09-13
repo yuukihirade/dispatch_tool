@@ -362,7 +362,12 @@ const Template = () => {
           <small className="text-muted">{selectedDispatch && format(new Date(selectedDispatch.updated_at), 'yyyy/MM/dd  HH:mm') + '最終更新'}</small>
         </p>
       </div>
-      <img src="#" className="card-img-bottom" alt="card-img-bottom" />
+      {selectedDispatch && selectedDispatch.image_path && (
+      selectedDispatch.image_path.split(',').map((img) => (
+      <img src={`../storage/image/${img}`}  className="card-img-bottom" alt="card-img-bottom" />
+      ))
+      
+      )}
     </div>
   </div>
 </div>
