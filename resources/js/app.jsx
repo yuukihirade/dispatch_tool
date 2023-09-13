@@ -216,6 +216,8 @@ const Template = () => {
   console.log({drivers});
   console.log({dispatchRequests});
   
+  
+  
   useEffect(() => {
     const url = '/api/drivers';
     fetch(url)
@@ -223,9 +225,10 @@ const Template = () => {
       .then(data => {
         console.log({data});
         setDrivers(Object.values(data['drivers']));
-        setDispatchRequests(Object.values(data['dispatch_requests']));
+        setDispatchRequests(Object.values(data['dispatch_requests']).sort(compareStartDatetime));
         // setJsToday(data.today.toISOString());
         setJsToday(data.today);
+        
         // console.log(driver);
         // console.log(data[0][0]);
         })
@@ -238,7 +241,17 @@ const Template = () => {
   const [selectedId, setSelectedId] = useState(undefined);
   
   
-
+  const compareStartDatetime = (a,b) => {
+    if(a.start_datetime > b.start_datetime){
+      return 1;
+    }
+    if(a.start_datetime < b.start_datetime){
+      return -1;
+    }
+    return 0;
+  }
+  
+  
   
   const handleClick = (e) => {
     console.log(e.target.id);
