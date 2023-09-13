@@ -251,6 +251,15 @@ const Template = () => {
     
   }
   
+  const [selectedAddress, setSelectedAddress] = useState("");
+  
+  const handleMap = (e) => {
+    console.log(e.target.id);
+    const renderingAddress = selectedDispatch.location.address;
+    setSelectedAddress(renderingAddress);
+    console.log({renderingAddress});
+    console.log({selectedAddress});
+  }
   
   
   return(
@@ -322,9 +331,10 @@ const Template = () => {
         {/*
         */}
         {/* 現場詳細画面へ遷移 */}
-        <a href="#" className="btn btn-primary">
+        <a href="#" onClick={handleMap} className="btn btn-primary" id={selectedDispatch && selectedDispatch.id}>
           現場地図
         </a>
+        <iframe src={`https://maps.google.co.jp/maps?output=embed&q=${selectedAddress}&z=16`} width="600" height="400" frameborder="0" scrolling="no" ></iframe>
       </div>
     </div>
     <div className="card">
