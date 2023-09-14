@@ -34,7 +34,19 @@ function setLocations(selectedCustomer){
     }
 }
 
-setCustomers();
+document.addEventListener('DOMContentLoaded', function(){
+    
+    setCustomers();
+    console.log(initialCustomer);
+
+    cateCustomersElement.value = initialCustomer;
+
+    setLocations(initialCustomer);
+
+    cateLocationsElement.value = initialLocation;
+})
+
+
 
 cateCustomersElement.addEventListener('change', function (){
     var selectedCustomer = cateCustomersElement.value;

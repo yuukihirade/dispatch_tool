@@ -45,7 +45,9 @@
                             <div class="col">
                                 <label for="customer_id" class="form-label">顧客名</label>
                                 <select class="form-select" aria-label="Default select example" id="customer_id" name="customer_id">
-                                    
+                                    @foreach($customers as $customer)
+                                        <option value="{{ $customer->id }}" @if(old('customer_id', $dispatch_request->customer_id) == $customer->id) selected @endif>{{ $customer->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -54,7 +56,9 @@
                         <div class="col">
                             <label for="location_id" class="form-label">現場名</label>
                             <select class="form-select" aria-label="Default select example" id="location_id" name="location_id">
-                                
+                                @foreach($locations as $location)
+                                    <option value="{{ $location->id }}" @if(old('location_id', $dispatch_request->location_id)) selected @endif>{{ $location->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -199,6 +203,9 @@
         let cateCustomersElement = document.getElementById('customer_id');
         let locations = @json($locations);
         let cateLocationsElement = document.getElementById('location_id');
+        let dispatch_request = @json($dispatch_request);
+        var initialCustomer = {!! json_encode(old('customer_id', $dispatch_request->customer_id)) !!};
+        var initialLocation = {!! json_encode(old('location_id', $dispatch_request->location_id)) !!};
         
     </script>
     <script src="{{ asset('/js/select_location.js') }}"></script>
