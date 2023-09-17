@@ -9,7 +9,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <a href="{{ route('register') }}"><button type="button" class="btn btn-outline-secondary">ユーザー新規登録</button></a>
+                <a class="nav-link" href="{{ route('register') }}"><button type="button" class="btn btn-outline-secondary">ユーザー新規登録</button></a>
             </div>
             <div class="col">
                 <form action="{{ route('admin.user.index') }}" method="get" class="form-group row">

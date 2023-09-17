@@ -16,7 +16,7 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->user()->department_id != 1)
+        if(!auth()->check() || !auth()->user()->isAdmin())
         {
             abort(403);
         }

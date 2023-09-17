@@ -63,4 +63,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\DispatchRequest');
     }
     
+    public function isAdmin()
+    {
+        return $this->department_id == 1;
+    }
+    
 }
