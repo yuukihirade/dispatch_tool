@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Controllers\RegisterController;
 
+
 class UserController extends Controller
 {
     //
@@ -63,6 +64,7 @@ class UserController extends Controller
         $form = $request->all();
         
         // dd($form);
+        $form['password'] = Hash::make($form['password']);
         
         unset($form['_token']);
         
